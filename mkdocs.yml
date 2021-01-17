@@ -1,3 +1,55 @@
-site_name: Raghav Saboo's Docs
+site_name: Raghav Saboo's Wiki
 theme:
   name: material
+  font:
+    text: Merriweather
+  features:
+  - navigation.tabs
+  - navigation.instant
+  palette:
+    primary: black
+    accent: light blue
+  logo: assets/profile.png
+  favicon: assets/profile.png
+markdown_extensions:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      linenums: true
+      linenums_style: pymdownx.inline
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+      - name: mermaid
+        class: mermaid-experimental
+        format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.keys
+  - pymdownx.snippets
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - abbr
+  - pymdownx.tabbed
+  - footnotes
+  - pymdownx.critic
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.smartsymbols
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.arithmatex:
+      generic: true
+  - meta
+extra_javascript:
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+google_analytics:
+  - UA-187552463-1
+  - auto
+copyright: Copyright &copy; 2021 Raghav Saboo
