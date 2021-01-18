@@ -2,9 +2,6 @@ site_name: Raghav Saboo's Wiki
 plugins:
   - search
   - mknotebooks:
-      binder: true
-      binder_service_name: "gh"
-      binder_branch: "main"
       enable_default_jupyter_cell_styling: false
       enable_default_pandas_dataframe_styling: false
 theme:
