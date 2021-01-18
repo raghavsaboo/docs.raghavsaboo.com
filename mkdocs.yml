@@ -1,11 +1,18 @@
 site_name: Raghav Saboo's Wiki
+plugins:
+  - search
+  - mknotebooks:
+      binder: true
+      binder_service_name: "gh"
+      binder_branch: "main"
+      enable_default_jupyter_cell_styling: false
+      enable_default_pandas_dataframe_styling: false
 theme:
   name: material
   font:
     text: Merriweather
   features:
   - navigation.tabs
-  - navigation.instant
   palette:
     primary: black
     accent: light blue
@@ -45,6 +52,7 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
   - meta
+  - codehilite
 extra_javascript:
   - javascripts/config.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
