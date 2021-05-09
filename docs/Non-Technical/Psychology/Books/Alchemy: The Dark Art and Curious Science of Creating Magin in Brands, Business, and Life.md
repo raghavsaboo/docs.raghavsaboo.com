@@ -1,4 +1,4 @@
-# Alchmey by Rory Sutherland
+# Alchemy by Rory Sutherland
 
 Link: [Good Reads](https://www.goodreads.com/book/show/26210508-alchemy)
 
@@ -11,8 +11,15 @@ The main premise of the book is that while science and logic has resulted in imm
 - Rory defines the way humans make decisions as "psycho-logic" - to distinguish it from the concepts of "logic" and "rationality"
 - The idea is to become adept at spotting instances where the "universal laws" don't apply - when abandoning logic is sensible
 
-There is matrix that can be plotted of human advances / ideas that fall ona spectrum between FAILS-to-WORKS and SEEMS WEIRD-to-MAKES SENSE.
+A 4x4 matrix that can be plotted of human advances / ideas that fall on a spectrum between FAILS to WORKS and SEEMS WEIRD to MAKES SENSE.
 
-e.g. Bicycles definitely work but are at the same time very weird - humans have leared how to ride bicycles but it is not built in a "logical" manner.
+e.g. Bicycles definitely work but are at the same time very weird - humans have learned how to ride bicycles but it is not built in a "logical" manner.
 
-## 
+## Signalling
+
+## Subconcious Hacking
+
+## Satisficing
+
+## Psychophysics
+
