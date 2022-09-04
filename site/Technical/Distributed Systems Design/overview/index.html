@@ -13,7 +13,7 @@
     
     
       
-        <title>Outline of Experimentation Topics - Raghav Saboo's Wiki</title>
+        <title>Overview - Raghav Saboo's Wiki</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#outline-of-experimentation-topics" class="md-skip">
+        <a href="#overview" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Outline of Experimentation Topics
+              Overview
             
           </span>
         </div>
@@ -583,12 +583,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
       
       
       
@@ -609,11 +611,59 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../Distributed%20Systems%20Design/overview/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Overview
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#key-components-of-modern-data-intensive-applications" class="md-nav__link">
+    Key Components of Modern Data Intensive Applications
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-requirements-for-data-intensive-applications" class="md-nav__link">
+    Key Requirements for Data Intensive Applications
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -630,14 +680,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
       
       
       
@@ -658,21 +706,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../Experimentation/Outline/" class="md-nav__link">
         Outline of Experimentation Topics
       </a>
-      
     </li>
   
 
@@ -711,6 +749,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#key-components-of-modern-data-intensive-applications" class="md-nav__link">
+    Key Components of Modern Data Intensive Applications
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-requirements-for-data-intensive-applications" class="md-nav__link">
+    Key Requirements for Data Intensive Applications
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -723,54 +783,60 @@
                 
 
 
-<h1 id="outline-of-experimentation-topics">Outline of Experimentation Topics</h1>
-<p>Causal Inference
-- Bayesian vs. Frequentist</p>
-<p>Basic Probability and Stats
-- False Positives and False Negatives
-- P-Values
-- Power
-- Confidence Interval
-- CTR Variance</p>
-<p>Designing Experiments
-- Why experiment?
-- Landscape
-- Product Development Cycle
-- Measuring Impact
-- What does the data look like
-- How to randomize
-- What could go wrong
-- What to measure
-- How to measure
-- Compare
-- Design and Monitor
-- Interpret and Recommend Action
-- A/A Test</p>
-<p>Overall Evaluation Criteria (OEC)</p>
-<p>Multiple Testing
-- False Positives and Multiple Testing
-- Omnibus test</p>
-<p>Tiered Metrics</p>
-<p>Central Limit Theorem and Handling Violated Assumptions
-- When not to A/B Test
-- What to do when you cannot A/B test
-- How to check assumptions
-- Bootstrap and Delta Method
-- One-sided and Two Sided tests
-- High Skew Remedies
-- Small Samples
-- Data Quality Checks</p>
-<p>Sequential Tests &amp; Variance Reduction
-- Peeking and Sequential Testing
-- Getting Results Faster
-- Variance Reduction
-- CUPED (vs Normal AB) and Crossover
-- Fast Surrogates
-- Pre-experiment Imbalance</p>
-<p>Multi-armed Bandits
-- vs. AB
-- vs. Contextual Bandits</p>
-<p>Marketplace and Network Effects</p>
+<h1 id="overview">Overview</h1>
+<p>Data intensive applications are one where:
+1. the amount of data that is generated/uses increases quickly OR
+2. the complexity of data generated/used increases quickly OR
+3. the speed of change in data increases quickly</p>
+<h2 id="key-components-of-modern-data-intensive-applications">Key Components of Modern Data Intensive Applications</h2>
+<ol>
+<li><strong>Database</strong> - source of truth for any consumer.</li>
+<li><strong>Cache</strong> - for temporarily storing an expensive operation to speed up reads</li>
+<li><strong>Full-text index</strong> - for quickly seasrching data by keyword or filter</li>
+<li><strong>Message queues</strong> - for message passing between processes.</li>
+<li><strong>Stream processing</strong> - near/realtime processing of data</li>
+<li><strong>Batch processing</strong> - crunching large amounts of collected data</li>
+<li><strong>Application code</strong> - logic and connective tissue between the components above</li>
+</ol>
+<h2 id="key-requirements-for-data-intensive-applications">Key Requirements for Data Intensive Applications</h2>
+<ol>
+<li>
+<p>Reliability</p>
+<ul>
+<li>Fault tolerance</li>
+<li>No un-authorized access</li>
+<li>Chaos testing</li>
+<li>Full machine failures</li>
+<li>Bugs - Automating tests</li>
+<li>Staging/Testing environment</li>
+<li>Quickly roll-back</li>
+</ul>
+</li>
+<li>
+<p>Scalability</p>
+<ul>
+<li>Handle higher traffic volume</li>
+<li>Meeting traffic load with peak number of reads, writes and simultaneous users</li>
+<li>Capacity planning</li>
+<li>Response time vs throughput</li>
+<li>End user response = server response time + network response time</li>
+<li>90<sup>th</sup>, 95<sup>th</sup> Percentile Service Level Objectives (SLOs) / Service Level Agreements (SLAs)</li>
+<li>Scaling</li>
+<li>up (more powerful machine)</li>
+<li>out (distributed over many smaller machines)</li>
+</ul>
+</li>
+<li>
+<p>Maintainability</p>
+<ul>
+<li>Add new people to work</li>
+<li>Productivity</li>
+<li>Operable: Configurable and testable</li>
+<li>Simple: Easy to understand and ramp up</li>
+<li>Evolveable: East to change</li>
+</ul>
+</li>
+</ol>
 
 
 
@@ -789,7 +855,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../../Distributed%20Systems%20Design/overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview" rel="prev">
+        <a href="../../Areas%20of%20Interest/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Areas of Interest" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -798,11 +864,26 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Overview
+              Areas of Interest
             </div>
           </div>
         </a>
       
+      
+        
+        <a href="../../Experimentation/Outline/" class="md-footer__link md-footer__link--next" aria-label="Next: Outline of Experimentation Topics" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Outline of Experimentation Topics
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
