@@ -1,11 +1,13 @@
 # Overview
 
 Data intensive applications are one where:
+
 1. the amount of data that is generated/uses increases quickly OR
 2. the complexity of data generated/used increases quickly OR
 3. the speed of change in data increases quickly
 
 ## Key Components of Modern Data Intensive Applications
+
 1. **Database** - source of truth for any consumer.
 2. **Cache** - for temporarily storing an expensive operation to speed up reads
 3. **Full-text index** - for quickly seasrching data by keyword or filter
@@ -15,7 +17,8 @@ Data intensive applications are one where:
 7. **Application code** - logic and connective tissue between the components above
 
 ## Key Requirements for Data Intensive Applications
-1. Reliability
+
+### 1. Reliability
 
     - Fault tolerance
     - No un-authorized access
@@ -25,7 +28,7 @@ Data intensive applications are one where:
     - Staging/Testing environment
     - Quickly roll-back
 
-2. Scalability
+### 2. Scalability
 
     - Handle higher traffic volume
     - Meeting traffic load with peak number of reads, writes and simultaneous users
@@ -37,7 +40,7 @@ Data intensive applications are one where:
       - up (more powerful machine)
       - out (distributed over many smaller machines)
 
-3. Maintainability
+### 3. Maintainability
 
     - Add new people to work
     - Productivity
