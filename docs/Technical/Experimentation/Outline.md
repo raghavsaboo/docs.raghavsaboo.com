@@ -3,7 +3,10 @@
 Causal Inference
 - Bayesian vs. Frequentist
 
-Basic Probability and Stats
+Basic Probability and Statistics
+- Probability Theory
+- Potential Outcomes Framework
+- Graphical Models
 - False Positives and False Negatives
 - P-Values
 - Power
