@@ -1,4 +1,4 @@
-# Probability
+# Basic Probability and Statistics
 P(A): probability of A
 P(A'): probability of not A (the complement)
 P(A, B): probability of A and B occuring together
@@ -80,15 +80,42 @@ graph LR
 ```
 
 # Potential Outcomes Framework
+For a set of i.i.d. subjects $i = 1, ..., n$ we observe a tuple $(X_i, Y_i, W_i)$ comprised of:
+- a *feature vector* $X_i$
+- a *response* or *potential outcomes* $Y_i$
+- a *treatment assignment* $T_i$
+
+The goal is to estimate the Causal Estimand or Causal Effect of Treatment. However we only get to observe one outcome for each $i$ i.e. $Y_i = Y_i(T_i)$ - you are either treated or not treated.
+- This is the "missingness" issue in causal inference
+
 ``` mermaid
 graph LR
     A[Causal Estimand] --> |Identificaiton| B[Statistical Estimand]
     B[Statistical Estimand] --> |Estimation| C[Estimate]
 ```
 
-- Causal Estimand: $E[Y(1) - Y(0)]$
+- Causal Estimand or Causal Effect of Treatment: $E[Y(1) - Y(0)]$
 - Statistical Estimand: $E_X[E[Y|T=1, X] - E[Y|T=0, X]]$
-- Estimate: $Average(Average(Y_i|T_i=1)) - Average(Average(Y_i|T_i=0))$
+- Estimate: $Average(Average(Y_i|T_i=1)) - Average(Y_i|T_i=0))$
+
+## Average Treatment Effect - ATE
+The causal effect of treatment is the average treatment effect i.e. $E[Y(1) - Y(0)]$.
+
+However we cannot observe treatment and control outcomes for all subjects $i$.
+
+Approach 1: Pure Randomized Control Trial
+- we assume that $(Y_0, Y_1) \bot T$
+- the potential outcomes are independent of the treatment assignment
+- in an RCT we get the following: $E[Y_i(1)] - E[Y_i(0)] = E[Y_i(1)|T_i=1] - E[Y_i(0)|T_i=0] = E[Y_i|T_i=1] - E[Y_i|T_i=0]$
+
+Approach 2: Conditional Average Treatment Effect
+- used when we expect that the *treatment assignment* is confounded by pre-treatment covariates $X$
+- this is commonly seen in observed data
+- we assume that $(Y_0, Y_1) \bot T | X$
+- controlling for X is enough if treatment is *as good as random* conditional on $X$
+- this is also known as *unconfoundedness*
+- this means that the ATE is calculated as $E[Y_i(1) - Y_i(0)] =E[Y_i(1)-Y_i(0)|X] = E[E[Y_i|X_i, T_i=1] - E[Y_i|X_i, T_i=0]$
+- note that $\text{CATE}$ and **individual treatment effect** can be considered the same
 
 ## Choice of Estimator
 A good estimator is:
@@ -111,14 +138,58 @@ graph LR
     style o1 text-align: left
 ```
 
-* $Y_0, Y_1$ are both potential outcomes
-* $\text{CATE}(X)$: Conditional Average Treatment Effect given X
-    - $\text{CATE}(X)=E[Y_1-Y_0|X]$
-    - We never directly observe $\text{CATE}$ sinc we only see one of the potential outcomes
-    - Not that $\text{CATE}$ and **individual treatment effect** can be considered the same
-* $\text{ATE}$: Average Treatment Effect
-    - $\text{ATE}=E[Y|T=1]-E[Y|T=0]$
-    - The average effect when we had a promotion minus the average effect when we don't have the promotion
-    - This effect is **only valid under the assumption of ignorability** which is valid in a randomized control trial (RCT)
+| X (age, cohort_age, region, device) | Promo (Y1) | No Promo (Y0) | Observed Y | CATE |
+|:-----------------------------------:|------------|---------------|------------|:----:|
+| (25, 5, city, iOS)                  |     **60** |            55 |         60 |    5 |
+| (35, 1, suburb, iOS)                |         70 |        **65** |         65 |    5 |
+| (25, 5, city, android)              |     **70** |            60 |         70 |   10 |
+| (27, 0, city, iOS)                  |         90 |        **80** |         80 |   10 |
+| (36, 2, city, android)              |         85 |        **80** |         80 |    5 |
+| (17, 2, suburb, iOS)                |     **75** |            70 |         75 |    5 |
+| (21, 7, suburb, iOS)                |        100 |        **90** |         90 |   10 |
+| (36, 2, city, android)              |     **80** |            70 |         80 |   10 |
+| E(Y)                                |      71.25 |         78.75 |            |  7.5 |
+|                                     | ATE        | 7.5           |            |      |
 
-## Difference Between $\text{ATE}$ and $\text{CATE}$
+The bold values represent actual observed outcomes.
+
+If we assumed RCT then ATE = -7.5 = E[Y|T=1] - E[Y|T=0].
+
+However in this case we can see that the actual treatment effect is 7.5 - and a perfect CATE strategy would estimate that.
+
+## Assumptions
+### Ignorability
+Basically we are saying that we control for everything possible to make sure our
+treatment assignment is not biased.
+
+1. The causal structure when treatment assignment mechanism is ignorable - i.e. not
+   arrow from X to T - no confounding
+``` mermaid
+graph LR
+  T ---> Y
+  X ---> Y
+```
+2. Causal structure of X confounding the effect of T on Y. The confounding is depicted
+   as the red dashed line.
+``` mermaid
+graph LR
+  T --> Y
+  X --> T
+  X --> Y
+```
+
+### Positivity (a.k.a Overlap)
+Two ways to look at positivity a.k.a overlap:
+
+1. For all values of covariates $x$ present in the population of subjects, $0 < P(T=1|X=x) < 1$. That is the probability of treatment assignment for all values of covariate $x$ should be non-zero.
+2. As overlap between the conditional distributions $P(X|T=0)$ and $P(X|T=1)$ is present. 
+
+An example is:
+
+ - Data on previous promos were only applied to Cx that are more than 2 years since activation. 
+ - This means you can’t estimate reliably the outcome under T = 1 for Cx with < 2 cohort age.
+
+#### The Positivity - Unconfoundedness Tradeoff
+Similar to curse of dimensionality, as you increase the number of covariates you condition on the degree of overlap decreases. 
+
+Therefore even if you can guarantee **ignorability** by controling for many confounders, you may still have a problem with overlap or positivity.

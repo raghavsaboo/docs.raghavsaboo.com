@@ -1,9 +1,11 @@
-# Outline of Experimentation Topics
+# Outline
 
 Causal Inference
+
 - Bayesian vs. Frequentist
 
 Basic Probability and Statistics
+
 - Probability Theory
 - Potential Outcomes Framework
 - Graphical Models
@@ -14,6 +16,7 @@ Basic Probability and Statistics
 - CTR Variance
 
 Designing Experiments
+
 - Why experiment?
 - Landscape
 - Product Development Cycle
@@ -31,12 +34,14 @@ Designing Experiments
 Overall Evaluation Criteria (OEC)
 
 Multiple Testing
+
 - False Positives and Multiple Testing
 - Omnibus test
 
 Tiered Metrics
 
 Central Limit Theorem and Handling Violated Assumptions
+
 - When not to A/B Test
 - What to do when you cannot A/B test
 - How to check assumptions
@@ -47,6 +52,7 @@ Central Limit Theorem and Handling Violated Assumptions
 - Data Quality Checks
 
 Sequential Tests & Variance Reduction
+
 - Peeking and Sequential Testing
 - Getting Results Faster
 - Variance Reduction
@@ -55,6 +61,7 @@ Sequential Tests & Variance Reduction
 - Pre-experiment Imbalance
 
 Multi-armed Bandits
+
 - vs. AB
 - vs. Contextual Bandits
 
