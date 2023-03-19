@@ -15,18 +15,18 @@
         <link rel="next" href="../Outline/">
       
       <link rel="icon" href="../../../assets/profile.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.8">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
     
     
       
-        <title>Probability - Raghav Saboo's Wiki</title>
+        <title>Basic Probability and Statistics - Raghav Saboo's Wiki</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.c4a75a56.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#probability" class="md-skip">
+        <a href="#basic-probability-and-statistics" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Probability
+              Basic Probability and Statistics
             
           </span>
         </div>
@@ -155,7 +155,7 @@
           
             
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-tabs__inner md-grid">
+  <div class="md-grid">
     <ul class="md-tabs__list">
       
         
@@ -753,12 +753,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Probability
+          Basic Probability and Statistics
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Probability
+        Basic Probability and Statistics
       </a>
       
         
@@ -827,7 +827,7 @@
   
     <li class="md-nav__item">
       <a href="../Outline/" class="md-nav__link">
-        Outline of Experimentation Topics
+        Outline
       </a>
     </li>
   
@@ -923,8 +923,7 @@
                   
 
 
-
-<h1 id="probability">Probability</h1>
+<h1 id="basic-probability-and-statistics">Basic Probability and Statistics</h1>
 <p>P(A): probability of A
 P(A'): probability of not A (the complement)
 P(A, B): probability of A and B occuring together</p>
@@ -1120,7 +1119,8 @@ P(B|(A, C)) = P(B|C).</p>
 <p>The bold values represent actual observed outcomes.</p>
 <p>If we assumed RCT then ATE = -7.5 = E[Y|T=1] - E[Y|T=0].</p>
 <p>However in this case we can see that the actual treatment effect is 7.5 - and a perfect CATE strategy would estimate that.</p>
-<h2 id="ignorability-assumption">Ignorability Assumption</h2>
+<h2 id="assumptions">Assumptions</h2>
+<h3 id="ignorability">Ignorability</h3>
 <p>Basically we are saying that we control for everything possible to make sure our
 treatment assignment is not biased.</p>
 <ol>
@@ -1134,9 +1134,22 @@ treatment assignment is not biased.</p>
 <pre class="mermaid"><code>graph LR
   T --&gt; Y
   X --&gt; T
-  X --&gt; Y
-  T --&gt; Y</code></pre></li>
+  X --&gt; Y</code></pre></li>
 </ol>
+<h3 id="positivity-aka-overlap">Positivity (a.k.a Overlap)</h3>
+<p>Two ways to look at positivity a.k.a overlap:</p>
+<ol>
+<li>For all values of covariates <span class="arithmatex">\(x\)</span> present in the population of subjects, <span class="arithmatex">\(0 &lt; P(T=1|X=x) &lt; 1\)</span>. That is the probability of treatment assignment for all values of covariate <span class="arithmatex">\(x\)</span> should be non-zero.</li>
+<li>As overlap between the conditional distributions <span class="arithmatex">\(P(X|T=0)\)</span> and <span class="arithmatex">\(P(X|T=1)\)</span> is present. </li>
+</ol>
+<p>An example is:</p>
+<ul>
+<li>Data on previous promos were only applied to Cx that are more than 2 years since activation. </li>
+<li>This means you can’t estimate reliably the outcome under T = 1 for Cx with &lt; 2 cohort age.</li>
+</ul>
+<h4 id="the-positivity-unconfoundedness-tradeoff">The Positivity - Unconfoundedness Tradeoff</h4>
+<p>Similar to curse of dimensionality, as you increase the number of covariates you condition on the degree of overlap decreases. </p>
+<p>Therefore even if you can guarantee <strong>ignorability</strong> by controling for many confounders, you may still have a problem with overlap or positivity.</p>
 
 
 
@@ -1178,10 +1191,10 @@ treatment assignment is not biased.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.a00a7c5e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.efa0ade1.min.js"></script>
       
         <script src="../../../javascripts/config.js"></script>
       
