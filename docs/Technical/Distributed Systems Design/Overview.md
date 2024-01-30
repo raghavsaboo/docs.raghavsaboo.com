@@ -10,8 +10,8 @@ Data intensive applications are one where:
 
 1. **Database** - source of truth for any consumer.
 2. **Cache** - for temporarily storing an expensive operation to speed up reads
-3. **Full-text index** - for quickly seasrching data by keyword or filter
-4. **Message queues** - for message passing between processes.
+3. **Full-text index** - for quickly searching data by keyword or filter
+4. **Message queues** - for message passing between processes
 5. **Stream processing** - near/realtime processing of data
 6. **Batch processing** - crunching large amounts of collected data
 7. **Application code** - logic and connective tissue between the components above
@@ -46,4 +46,4 @@ Data intensive applications are one where:
 * Productivity
 * Operable: Configurable and testable
 * Simple: Easy to understand and ramp up
-* Evolveable: East to change
+* Evolveable: Easy to change

@@ -1,6 +1,10 @@
 site_name: Raghav Saboo's Wiki
 plugins:
   - search
+  # - mkdocs-jupyter:
+  #     remove_tag_config:
+  #         remove_input_tags:
+  #             - hide_input
   - mknotebooks:
       enable_default_jupyter_cell_styling: false
       enable_default_pandas_dataframe_styling: false
@@ -8,18 +12,18 @@ plugins:
 theme:
   name: material
   font:
-    text: Merriweather
+    text: Roboto
   features:
   - navigation.tabs
   palette:
-    primary: black
+    primary: white
     accent: light blue
   logo: assets/profile.png
   favicon: assets/profile.png
 markdown_extensions:
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       linenums: true
       linenums_style: pymdownx.inline
@@ -58,4 +62,4 @@ extra_javascript:
 google_analytics:
   - UA-187552463-1
   - auto
-copyright: Copyright &copy; 2023 Raghav Saboo
+copyright: Copyright &copy; 2024 Raghav Saboo
