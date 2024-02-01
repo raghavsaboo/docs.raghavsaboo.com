@@ -2,6 +2,7 @@ site_name: Raghav Saboo's Wiki
 plugins:
   - search
   # - mkdocs-jupyter:
+  #     include_requirejs: true
   #     remove_tag_config:
   #         remove_input_tags:
   #             - hide_input
@@ -15,6 +16,8 @@ theme:
     text: Roboto
   features:
   - navigation.tabs
+  - navigation.instant
+  - navigation.instant.progress
   palette:
     primary: white
     accent: light blue
