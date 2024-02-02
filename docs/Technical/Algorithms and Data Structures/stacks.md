@@ -24,5 +24,5 @@ Space Complexity: `O(n)`
 
 Time Complexities:
 
-![Arrays](./drawio_diagrams/stacks.drawio.png)
+![Stacks](./drawio_diagrams/stacks.drawio.png)
 

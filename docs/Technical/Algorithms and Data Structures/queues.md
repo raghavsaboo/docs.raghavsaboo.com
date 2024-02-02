@@ -94,5 +94,5 @@ Space Complexity: `O(n)`
 
 Time Complexities:
 
-![Arrays](./drawio_diagrams/queue.drawio.png)
+![Queues](./drawio_diagrams/queue.drawio.png)
 
