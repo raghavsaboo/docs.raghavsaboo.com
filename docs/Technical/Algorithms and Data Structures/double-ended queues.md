@@ -1,16 +1,8 @@
-# Double-Ended Queues
+# Dequeue - Double-Ended Queues
 
-A `queue` is a collection of objects that are inserted and removed according to the `first-in, first-out (FIFO)` principle. Elements can be inserted at any time, but only the elements that has been in the queue the longest can be next removed.
+A queue like data structure that supports insertion and deletion from both the front and back of the queue. 
 
-<!-- In general the LIFO protocol allows the stack to be used as a tool for reversing a data sequence, matching tags, parenthesis etc. -->
-
-Some common methods supported by a queue are:
-
-- `queue.enqueue(e)` - add an element `e` to the back of a queue
-- `queue.dequeue()` - remove and return the first element from a stack
-- `queue.first()` - return the first element of a stack
-- `queue.is_empty()` - check if queue is empty
-- `len(queue)` - the number of elements in a queue
+An implementation of this is available through the `deque` class in Python in the standard collections module.
 
 ## Array-Based Queue Implementation
 
