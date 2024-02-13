@@ -26,3 +26,4 @@ Time Complexities:
 
 ![Arrays](./drawio_diagrams/stacks.drawio.png)
 
+[^1]: Data Structures and Algorithms in Python by M. Goodrich, R. Tamassia, M. Goldwasser
