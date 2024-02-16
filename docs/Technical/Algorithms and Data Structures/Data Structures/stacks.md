@@ -12,9 +12,9 @@ Some common methods supported by a stack are:
 - `stack.is_empty()` - check if stack is empty
 - `len(stack)` - the number of elements in a stack
 
-
 ## Simple Array-Based Stacks
-We can implements stacks easily by using a `list` in Python. 
+
+We can implements stacks easily by using a `list` in Python.
 
 Look at [Adapter Pattern](../Object%20Oriented%20Programming/adapter_pattern.ipynb) to get an example of a stack implementation using lists.
 
@@ -25,5 +25,3 @@ Space Complexity: `O(n)`
 Time Complexities:
 
 ![Stacks](./drawio_diagrams/stacks.drawio.png)
-
-[^1]: Data Structures and Algorithms in Python by M. Goodrich, R. Tamassia, M. Goldwasser

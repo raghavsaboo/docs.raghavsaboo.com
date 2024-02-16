@@ -1,4 +1,4 @@
-# Arrays 
+# Arrays
 
 Python has various "sequence" classes, namely the built in **list**, **tuple** and **str** classes. They have significant commonality, most notably that:
 
@@ -17,7 +17,7 @@ Even thought the bytes are physically stored sequentially, **Random Access Memor
 
 A group of related variables can be stored one after another in a contiguous portion of the computer's memory - denoted as an **array**. An example is a text string where each character is represented using the Unicode Character set with 16 bits (i.e. 2 bytes) for each character. So a siz-character string, such as 'SAMPLE' is stored in 12 consecutive bytes of memory.
 
-Hence each cell of an array must use the same number of bytes to allow an arbitrary cell of the array to be accessed in constant time based on its index. 
+Hence each cell of an array must use the same number of bytes to allow an arbitrary cell of the array to be accessed in constant time based on its index.
 
 ## Referential Arrays
 
@@ -39,22 +39,24 @@ Strings are for example represented using an array of characters (not an array o
 These have some advantages over referential structures in terms of computing performance:
 
 1. overall memory usage will be much lower for a compact structure because there is no overhead devoted to the explicit storage of the sequence of memory references in addition to the primary data
-2. the primary data are stored consecutively in memory - which is not the case for a referential structure. Because of the workings of the cache and memory hierarchies of computers, it is often advantageous to have data stored in memory near other data that might be used in the same computations. 
+2. the primary data are stored consecutively in memory - which is not the case for a referential structure. Because of the workings of the cache and memory hierarchies of computers, it is often advantageous to have data stored in memory near other data that might be used in the same computations.
 
 Primary support for compact arrays is in a module named `array`.
 
 ## Dynamic Arrays and Amortization
-When creating a low-level array in a computer system, the precise size of that array must be explicitly declared in order for the system o properly allocate a consecutive piece of memory for its storage. Because the system may dedicate neighboring memory locations to store other data, the capacity of an array cannot trivially be increased by expanding into subsequent cells. 
+
+When creating a low-level array in a computer system, the precise size of that array must be explicitly declared in order for the system o properly allocate a consecutive piece of memory for its storage. Because the system may dedicate neighboring memory locations to store other data, the capacity of an array cannot trivially be increased by expanding into subsequent cells.
+
 - for `tuple` or `str` this is not a problem - they are immutable, so the correct size for an underlying array can be fixed when the object is instantiated
 
 However `list` class allows us to add elements tot he list with no apparent limit to the overall capacity of the list - this is accomplished through an algorithmic implementation of a **dynamic array**.
 
 The key properties that allow this are:
+
 1. the list instance maintains an underlying array that is often larger / has greater capacity than the current length of the list - the system may reserve an underlying array capable of storing more object references than what the list was instantiated with
 2. as new elements are appended to a list, the class requests new larger arrays from the system and initialize the new array so that its prefix matches that of the existing small array - at which point the old array is reclaimed by the system
 
 #### Implementing a Dynamic Array
-
 
 ```python
 import ctypes
@@ -76,14 +78,14 @@ class DynamicArray:
     def __len__(self):
         """Return number of elements stored in the array."""
         return self._n
-    
+
     def __get_item(self, k):
         """Return element at index k."""
         if not 0 <= k < self._n:
             raise IndexError('invalid index')
         # retrieve from array
         return self._A[k]
-    
+
     def append(self, obj):
         """Add an object to the end of the array"""
 
@@ -91,7 +93,7 @@ class DynamicArray:
         if self._n == self._capacity:
             # double the capacity
             self._resize(2 * self._capacity)
-        
+
         self._A[self._n] = obj
         self._n += 1
 
@@ -106,7 +108,7 @@ class DynamicArray:
         for j in range(self._n, k, -1):
             # shift rightmost first
             self._A[j] = self._A[j-1]
-        
+
         # store newest element
         self._A[k] = obj
         self._n += 1
@@ -126,7 +128,7 @@ class DynamicArray:
                 # have one less item
                 self._n -= 1
                 return
-        
+
         raise ValueError('object / value not found')
 
 
@@ -150,18 +152,19 @@ class DynamicArray:
 ```
 
 #### Amortized Analysis of Dynamic Arrays
+
 It may seem that replacing an array with a new larger array might seem slow (because a single append operation may require O(n) time to perform), however notice that by doubling the capacity during an array replacement the new array allows us to add `n` new elements before the array must be replaced again.
 
 Therefore performing a series of operations on an initially empty dynamic array is efficient in terms of its total running time (or **amortized** time).
 
-So the amortized bound of appending items to a list can be shown to be `O(1)` - and this is also true for any geometrically increasing progression of array sizes. 
+So the amortized bound of appending items to a list can be shown to be `O(1)` - and this is also true for any geometrically increasing progression of array sizes.
 
 But arithmetic progression (i.e. a constant increase in cells of a dynamic array) does not perform as well - in fact it causes the append operation to be quadratic to the number of operations.
 
 Also geometric increase in capacity for dynamic arrays guarantees that the final array size is proportional to the overall number of elements - i.e. the data structure uses O(n) memory. However some considerations need to be made if repeated insertions and removals from the array are possible.
 
-
 ## Efficiencies
+
 Space Complexity: `O(n)`
 
 Time Complexities:
@@ -174,13 +177,11 @@ Time Complexities:
 
 2. Constructing new lists - use **list comprehensions** instead of `append` - again due to similar reasons as above. However be careful in how the objects are referenced:
 
-
-
 ```python
 # this will create a reference to the same [0, 0] list!
-incorrect_2d_array = [[0] * 2] * 5 
+incorrect_2d_array = [[0] * 2] * 5
 # this will create reference to independent [0, 0] lists
-correct_2d_array = [[0] * 2 for j in range(5)] 
+correct_2d_array = [[0] * 2 for j in range(5)]
 
 incorrect_2d_array[0][0] = 100
 correct_2d_array[0][0] = 100
@@ -192,6 +193,3 @@ print(f"Correct 2D array: {correct_2d_array}")
 
     Incorrect 2D array: [[100, 0], [100, 0], [100, 0], [100, 0], [100, 0]]
     Correct 2D array: [[100, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
-
-
-[^1]: Data Structures and Algorithms in Python by M. Goodrich, R. Tamassia, M. Goldwasser

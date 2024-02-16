@@ -4,9 +4,8 @@ Recursion is another way to achieve repetition apart from loops. In recursion a 
 
 A recursive function has some basic properties:
 
-1. it contains one or more *base cases* which are defined non-recursively in terms of fixed quantities
-2. it contains one or more *recursive cases* which are defined by appealing to the definition of the function being defined
-
+1. it contains one or more _base cases_ which are defined non-recursively in terms of fixed quantities
+2. it contains one or more _recursive cases_ which are defined by appealing to the definition of the function being defined
 
 ```python
 def factorial(n):
@@ -21,9 +20,6 @@ def factorial(n):
 In Python, each time a function (recursive or otherwise) is called, a structure known as an **activation record** or **frame** is created to store information about the progress of that invocation of the function. This activation record includes a namespace for storing the function call's parameters and local variables, and information about which command in the body of the function is currently executing.
 
 When the execution of a function leads to a nested function call, the execution of the former call is suspended and its activation record stores the place in the source code at which the flow of control should continue upon return of the nested call. This process is used both in the standard case of one function calling a different function, or in the recursive case in which a function invokes itself. The key point is that there is a different activation record for each active cell.
-
-
-
 
 ```python
 import os
@@ -44,14 +40,14 @@ def disk_usage(path):
 ```
 
 ## Maximum Recursive Depth in Python
-If each recursive call makes another recursive call, without ever reaching a base case, then we have an infinite series of such calls. 
 
-This is called **infinite  recursion** and it is a fatal error as it can quickly swamp computing resources, not only due to rapid use of the CPU, but because each successive call creates an activation record requiring additional memory.
+If each recursive call makes another recursive call, without ever reaching a base case, then we have an infinite series of such calls.
 
-To avoid this, we should always ensure that each recursive call is in some way progressing toward a base case. Also in Python there is an intentional design decision to limit the overall number of function activations that can be simultaneously active at ~ 1,000. 
+This is called **infinite recursion** and it is a fatal error as it can quickly swamp computing resources, not only due to rapid use of the CPU, but because each successive call creates an activation record requiring additional memory.
+
+To avoid this, we should always ensure that each recursive call is in some way progressing toward a base case. Also in Python there is an intentional design decision to limit the overall number of function activations that can be simultaneously active at ~ 1,000.
 
 In Python this can be dynamically reconfigured:
-
 
 ```python
 import sys
@@ -71,8 +67,8 @@ Note that the linear recursion terminology here reflects the structure of the re
 ### Linear Recursion Examples
 
 #### Linear Sum
-Calculating the sum of a sequence of numbers by adding the last number to the sum of the first `n-1`.
 
+Calculating the sum of a sequence of numbers by adding the last number to the sum of the first `n-1`.
 
 ```python
 def linear_sum(S, n):
@@ -85,8 +81,8 @@ def linear_sum(S, n):
 ```
 
 #### Reversing a Sequence
-Reversal of a sequence by swapping the first and last elements, and then recursively reversing the remaining elements. 
 
+Reversal of a sequence by swapping the first and last elements, and then recursively reversing the remaining elements.
 
 ```python
 def reverse(S, start, stop):
@@ -98,12 +94,13 @@ def reverse(S, start, stop):
 ```
 
 #### Computing Powers
+
 Raising a number $x$ to an arbitrary non-negaive integer, $n$ - i.e. compute the **power function**, defined as $\text{power}(x,n)=x^n$.
 
 A trivial definition would follow from the fact that $x^n=x \cdot x^{n-1}$
 
 $$
-\text{power}(x,n)= 
+\text{power}(x,n)=
     \begin{cases}
     1 & \text{if n=0} \\
     x \cdot \text{power}(x, n-1) & \text{otherwise}
@@ -115,7 +112,7 @@ This is `O(n)`
 A much faster way to compute the power function is the squaring technique. Let $k=\lfloor \frac{n}{2} \rfloor$ denote the floor of the division. When $n$ is even, $k=\lfloor \frac{n}{2} \rfloor=\frac{n}{2}$ and therefore $(x^k)^2=(x^{\frac{n}{2}})^2=x^n$. When $n$ is odd $k=\lfloor \frac{n}{2} \rfloor=\frac{n-1}{2}$ and therefore $(x^k)^2=(x^{\frac{n-1}{2}})^2=x^{n-1}$.
 
 $$
-\text{power}(x,n)= 
+\text{power}(x,n)=
     \begin{cases}
     1 & \text{if n=0} \\
     x \cdot (\text{power}(x, \lfloor \frac{n}{2} \rfloor))^2 & \text{if n>0 is odd} \\
@@ -125,7 +122,6 @@ $$
 
 This is `O(log n)`
 
-
 ```python
 def power(x, n):
     """Compute the value x**n for integer n."""
@@ -133,7 +129,7 @@ def power(x, n):
         return 1
     else:
         return x*power(x, n-1)
-    
+
 def faster_power(x, n):
     """Compute the value x**n for integer n."""
     if n == 0:
@@ -149,8 +145,8 @@ def faster_power(x, n):
 ### Binary Recursion
 
 #### Binary Sum
-Summing the $n$ elements of a sequence, $S$, of numbers by computing the sum of the first half and the sum of the second half, and then adding them together. 
 
+Summing the $n$ elements of a sequence, $S$, of numbers by computing the sum of the first half and the sum of the second half, and then adding them together.
 
 ```python
 def binary_sum(S, start, stop):
@@ -159,7 +155,7 @@ def binary_sum(S, start, stop):
         return 0
     elif start == stop - 1:
         return S[start]
-    else: 
+    else:
         mid = (start + stop) // 2
         return binary_sum(S, start, mid) + binary_sum(S, mid, stop)
 ```
@@ -167,6 +163,7 @@ def binary_sum(S, start, stop):
 ### Multiple Recursion
 
 #### Summation Puzzle
+
 A common example is when we want to enumerate various configurations in order to solve a combinatorial puzzle e.g. a **summation puzzle**.
 
 $$
@@ -177,7 +174,7 @@ boy + girl = baby
 \end{split}
 $$
 
-Here we need to assign a unique digit (0...9) to each letter in the equation in order to make the equation true. So we can use the computer to enumerate all possibilities and test each one. 
+Here we need to assign a unique digit (0...9) to each letter in the equation in order to make the equation true. So we can use the computer to enumerate all possibilities and test each one.
 
 The general algorithm for building sequences is:
 
@@ -204,7 +201,8 @@ puzzle_solve(k, S, U):
 ```
 
 ## Designing Recursive Algorithms
-Think of the different ways to define subproblems that have the same general structure as the original problem. 
+
+Think of the different ways to define subproblems that have the same general structure as the original problem.
 
 Add necessary parameterization to the function (e.g. passing beginning and end of sub-array).
 
@@ -213,7 +211,8 @@ Add necessary parameterization to the function (e.g. passing beginning and end o
 **Recur** - for non-base cases, perform one or more recursive calls.
 
 ### Eliminating Tail Recursion
-The usefulness of recursion comes at a modest cost - in particular the Python interpreter must maintain activation records that keep track of the state of each nested call. 
+
+The usefulness of recursion comes at a modest cost - in particular the Python interpreter must maintain activation records that keep track of the state of each nested call.
 
 Some forms of recursion can be eliminated without the use of axillary memory (like stacks) - and a notable form is **tail recursion**.
 
@@ -221,10 +220,9 @@ A recursion is a tail recursion if any recursive call is made from one context i
 
 Examples are binary search and the sequence reversing algorithm.
 
-However the factorial function is *not* a tail recursion as it involves `return n * factorial(n-1)` which means an additional multiplication is performed after the recursive call.
+However the factorial function is _not_ a tail recursion as it involves `return n * factorial(n-1)` which means an additional multiplication is performed after the recursive call.
 
 Tail recursions can be reimplemented non-recursively by enclosing the body in a loop for repetition, and replacing a recursive call with new parameters by reassignment of the existing parameters to those values.
-
 
 ```python
 def binary_search_iterative(data, target):
@@ -235,10 +233,10 @@ def binary_search_iterative(data, target):
         mid = (low + high) // 2
         if target == data[mid]:
             return True
-        
+
         elif target < data[mid]:
             high = mid - 1
-        
+
         else:
             low = mid + 1
 
@@ -253,5 +251,3 @@ def reverse_iterative(S):
         start, stop = start + 1, stop - 1
 
 ```
-
-[^1]: Data Structures and Algorithms in Python by M. Goodrich, R. Tamassia, M. Goldwasser

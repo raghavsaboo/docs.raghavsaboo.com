@@ -73,8 +73,9 @@ x + y, x - y, x * y, x / y, x ** y
 ```
 
 #### Hadamard product (Elementwise multiplication of two matrices)
+
 Specifically, elementwise multiplication of two matrices is called their
-*Hadamard product* (math notation $\odot$). Consider matrix
+_Hadamard product_ (math notation $\odot$). Consider matrix
 $\mathbf{B} \in \mathbb{R}^{m \times n}$ whose element of row
 $i` and column $j$ is $b_{ij}$. The Hadamard product
 of matrices $\mathbf{A}$ and
@@ -93,16 +94,17 @@ $$
 ### Linear Algebra Operations
 
 #### Transpose
+
 ```python
 A = np.arange(20).reshape(5, 4)
 A
 A.T
 ```
 
-As a special type of the square matrix, a *symmetric matrix*
+As a special type of the square matrix, a _symmetric matrix_
 $\mathbf{A}$ is equal to its transpose:
 $\mathbf{A} = \mathbf{A}^\top$. Here we define a symmetric matrix
-``B``.
+`B`.
 
 ```python
 B = np.array([[1, 2, 3], [2, 0, 4], [3, 4, 5]])
@@ -111,7 +113,8 @@ B == B.T
 ```
 
 #### Vector Dot Products
-Given two vectors $\mathbf{x}, \mathbf{y} \in \mathbb{R}^d$, their *dot product*
+
+Given two vectors $\mathbf{x}, \mathbf{y} \in \mathbb{R}^d$, their _dot product_
 $\mathbf{x}^\top \mathbf{y}$ (or
 $\langle \mathbf{x}, \mathbf{y} \rangle$) is a sum over the
 products of the elements at the same position:
@@ -131,9 +134,9 @@ $\mathbf{x}$ according to the weights $\mathbf{w}$ could be
 expressed as the dot product $\mathbf{x}^\top \mathbf{w}$. When
 the weights are non-negative and sum to one (i.e.,
 $\left(\sum_{i=1}^{d} {w_i} = 1\right)$), the dot product
-expresses a *weighted average*. After normalizing two vectors to have
+expresses a _weighted average_. After normalizing two vectors to have
 the unit length, the dot products express the cosine of the angle
-between them. We will formally introduce this notion of *length* later
+between them. We will formally introduce this notion of _length_ later
 in this section.
 
 #### Matrix Multiplications
@@ -158,6 +161,7 @@ X = torch.sum() # sum all elements
 ```
 
 #### Non-Reduction Sum
+
 However, sometimes it can be useful to keep the number of axes unchanged when invoking the function for calculating the sum or mean.
 
 ```python
@@ -167,6 +171,7 @@ A / sum_A
 ```
 
 ### Cumulative Sum
+
 If we want to calculate the cumulative sum of elements of A along some axis, say axis=0 (row by row), we can call the cumsum function. This function will not reduce the input tensor along any axis.
 
 ```python
@@ -241,5 +246,3 @@ print('id(Z):', id(Z))
 Z[:] = X + Y
 print('id(Z):', id(Z))
 ```
-
-[^1]: D2L https://classic.d2l.ai/

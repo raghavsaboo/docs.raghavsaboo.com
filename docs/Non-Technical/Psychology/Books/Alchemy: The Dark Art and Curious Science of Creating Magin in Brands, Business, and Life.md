@@ -9,7 +9,7 @@ treasure trove still waiting to be discovered by applying apparently illogical s
 
 - Just because the scientific methodology has been so reliable it does not have to be the only tool to apply especially
   to a messy field like human behaviour.
-- *"Engineering does not allow for magic. Psychology does."*
+- _"Engineering does not allow for magic. Psychology does."_
 - Rory defines the way humans make decisions as "psycho-logic" - to distinguish it from the concepts of "logic" and "
   rationality"
 - The idea is to become adept at spotting instances where the "universal laws" don't apply - when abandoning logic is
@@ -28,4 +28,3 @@ not built in a "logical" manner.
 ## Satisficing
 
 ## Psychophysics
-

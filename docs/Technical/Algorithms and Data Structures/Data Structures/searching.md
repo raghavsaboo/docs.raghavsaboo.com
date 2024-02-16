@@ -8,12 +8,11 @@ Time complexity: `O(log n)`
 
 When the sequence is **unsorted** then we can use **sequential search** algorithms that run in O(n) time (i.e. linear time).
 
-
 ```python
 def binary_search(data, target, left, right):
     """
     Return True if target is found in indicated portion of a Python list.
-    
+
     The search only considers the portion from data[left] to data[right] inclusive.
     """
 
@@ -30,5 +29,3 @@ def binary_search(data, target, left, right):
             # recur on the portion right of the middle
             return binary_search(data, target, mid + 1, right)
 ```
-
-[^1]: Data Structures and Algorithms in Python by M. Goodrich, R. Tamassia, M. Goldwasser

@@ -15,9 +15,9 @@ theme:
   font:
     text: Roboto
   features:
-  - navigation.tabs
-  - navigation.instant
-  - navigation.instant.progress
+    - navigation.tabs
+    - navigation.instant
+    - navigation.instant.progress
   palette:
     primary: white
     accent: light blue

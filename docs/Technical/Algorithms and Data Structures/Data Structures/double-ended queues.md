@@ -1,21 +1,15 @@
 # Dequeue - Double-Ended Queues
 
-A queue like data structure that supports insertion and deletion from both the front and back of the queue. 
+A queue like data structure that supports insertion and deletion from both the front and back of the queue.
 
 An implementation of this is available through the `deque` class in Python in the standard collections module.
 
-## Array-Based Queue Implementation
+## Array-Based Deqeue Implementation
 
-Utilizing a `list` for a queue would be very inefficient - this is because `pop(0)` i.e. a `pop` on a non-default index causes a loop to be executed that shifts all elements beyon the index to te left. This would cause the worst-case behavior of O(n) time.
+We can implement a deque in a similar way as the [Queue](./queues.md). The main modifications are:
 
-Therefore we need to implement a queue using a **circular array** with the following logic:
-
-1. initialize a `list` with a fixed size that is larger than the actual number of elements t be ever added tot he queue
-2. define `front` as the index of the "first" element of a queue
-3. enqueue items to the index calculated by `(front + size) % capacity` of the queue
-   - for example for a queue of size 3, enqueue of [2, 1, 4] would be built as following: [2, None, None] -> [2, 1, None] -> [2, 1, 4]
-   - then following dequeue operations will happen like so: [None, 1, 4] and front = 1 -> [None, None, 4] and front = 2 etc.
-4. whenever the size of the queue is equal to its capacity, resize it to be double the capacity, and whenever the size is 1/4th of the capacity, resize it to be half the capacity
+1. adding a pointer to the last element as `.last()` where `last = (self._front + self._size - 1) % len(self._data)`
+2. ability to add and remove from the back of the queue
 
 ```python
 class Empty(Exception):
@@ -44,9 +38,25 @@ class ArrayQueue:
 
         return self._data[self._front]
 
-    def dequeue(self):
-        if self._is_empty():
+    def last(self):
+        if self.is_empty():
             raise Empty('Queue is Empty')
+
+        back = (self._front + self._size - 1) % len(self._data)
+
+        return back
+
+    def add_first(self, e):
+        if self._size == len(self._data):
+            self._resize(2 * len(self.data))
+
+        self._front = (self._front - 1) % len(self._data)
+        self._data[self._front] = e
+        self._size += 1
+
+    def delete_first(self):
+        if self.is_empty():
+            raise Empty('Deque is Empty')
 
         answer = self._data[self._front]
 
@@ -59,13 +69,27 @@ class ArrayQueue:
 
         return answer
 
-    def enqueue(self, e):
+    def add_last(self, e):
         if self._size == len(self._data):
             self._resize(2 * len(self.data))
 
         avail = (self._front + self._size) % len(self._data)
         self._data[avail] = e
         self._size += 1
+
+    def delete_last(self):
+        if self.is_empty():
+            raise Empty('Deque is empty')
+
+        back = self.last()
+        answer = self._data[back]
+        self._data[back] = None
+        self._size -= 1
+
+        if 0 < self._size < len(self._data) // 4:
+            self._resize(len(self._data) // 2)
+
+        return answer
 
     def _resize(self, cap):
         old = self._data
@@ -85,6 +109,4 @@ Space Complexity: `O(n)`
 
 Time Complexities:
 
-![Arrays](./drawio_diagrams/queue.drawio.png)
-
-[^1]: Data Structures and Algorithms in Python by M. Goodrich, R. Tamassia, M. Goldwasser
+![Arrays](./drawio_diagrams/deque.drawio.png)
