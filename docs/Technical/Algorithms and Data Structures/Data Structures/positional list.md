@@ -1,4 +1,4 @@
-# Positional ADT
+# Positional
 
 Stacks, queues, and double ended queues only allow update operations that occur at one end of a sequence or the other. But these are too limiting - we want to be able to refer to elements anywhere in a sequence, and to perform arbitrary insertions and deletions.
 

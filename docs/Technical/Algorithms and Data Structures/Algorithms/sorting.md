@@ -1,5 +1,15 @@
 # Sorting Algorithms
+## Bubble Sort
 
+## Merge Sort
+
+## Quick Sort
+
+## Bucket Sort
+
+## Radix Sort
+
+## Counting Sort
 
 ## Insertion Sort
 ```pseudocode
