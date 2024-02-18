@@ -1,0 +1,50 @@
+- `gg`         : Move to the first line of the file
+- `G`          : Move to the last line
+- `gg=G`       : Reindent the whole file
+- `gv`         : Reselect the last visual selection
+- `` `< ``     : Jump to the beginning of the last visual selection
+- `` `> ``     : Jump to the end of the last visual selection
+- `^`          : Move to the first non-blank character of the line
+- `g_`         : Move to the last non-blank character of the line (but you remove trailing whitespace, right)
+- `g_lD`       : Delete all the trailing whitespace on the line
+- `ea`         : Append to the end of the current word
+- `gf`         : Jump to the file name under the cursor
+- `xp`         : Swap character forward
+- `Xp`         : Swap character backward
+- `yyp`        : Duplicate the current line
+- `yapP`       : Duplicate the current paragraph
+- `dat`        : Delete around an HTML tag, including the tag
+- `dit`        : Delete inside an HTML tag, excluding the tag
+- `w`          : Move one word to the right
+- `b`          : Move one word to the left
+- `dd`         : Delete the current line
+- `zc`         : Close current fold
+- `zo`         : Open current fold
+- `za`         : Toggle current fold
+- `zi`         : Toggle folding entirely
+- `<<`         : Outdent current line
+- `>>`         : Indent current line
+- `z=`         : Show spelling corrections
+- `zg`         : Add to spelling dictionary
+- `zw`         : Remove from spelling dictionary
+- `~`          : Toggle the case of the current character
+- `gUw`        : Uppercase until the end of the word (u for lower, ~ to toggle)
+- `gUiw`       : Uppercase entire word (u for lower, ~ to toggle)
+- `gUU`        : Uppercase entire line
+- `gu$`        : Lowercase until the end of the line
+- `da"`        : Delete the next double-quoted string
+- `+`          : Move to the first non-whitespace character of the next line
+- `S`          : Delete current line and go into insert mode
+- `I`          : Insert at the beginning of the line
+- `ci"`        : Change what’s inside the next double-quoted string
+- `ca{`        : Change inside the curly braces (try [, (, etc.)
+- `vaw`        : Visually select word
+- `dap`        : Delete the whole paragraph
+- `r`          : Replace a character
+- `` `[ ``     : Jump to the beginning of the last yanked text
+- `` `] ``     : Jump to the end of the last yanked text
+- `g;`         : Jump to the last change you made
+- `g,`         : Jump back forward through the change list
+- `&`          : Repeat the last substitution on the current line
+- `g&`         : Repeat the last substitution on all lines
+- `ZZ`         : Save the current file and close it

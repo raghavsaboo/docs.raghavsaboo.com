@@ -83,6 +83,116 @@ class Tree(ABC):
             position = self.root()
 
         return self._height(position)
+
+
+```
+
+## Linked Structure for General Trees
+
+A natural way to represent a tree is through a **linked structure**, with nodes that maintain references to the elment stores at a position `p` and to the nodes associated with the children and parent of `p`.
+
+For a general tree, there is no limit on the number of children that a node may have. A natural way to realize a general tree `T` as a linked structure is to have each node store a single **container** of references to its children.
+
+The tree itself also maintainsan instance variable storing a reference to the root node, and a variable called `size` that represents the overall number of nodes of `T`.
+
+```python
+class TreeNode:
+    __slots__ = '_element', '_parent', '_left', '_right'
+
+    def __init__(self, element, parent=None, children=[]):
+        self._element = element
+        self._parent = parent
+        self._children = children
+
+class TreePosition(Position):
+
+    def __init__(self, container, node):
+        self._container = container
+        self._node = node
+
+    def element(self):
+        return self._node._element
+
+    def __eq__(self, other):
+        return type(other) is type(self) and other._node is self._node
+
+class GeneralTree(Tree):
+
+    def __init__(self):
+        self._root = None
+        self._size = 0
+
+    def _make_position(self, node):
+        return self.Position(self, node) ifnode is not None else None
+
+    def _validate(self, p):
+        if not isinstance(p, self.Position):
+            raise TypeError('p must be proper Position type')
+
+        if p._container is not self:
+            raise ValueError('p does not belong to this container')
+
+        if p._node._parent is p._node:
+            raise ValueError('p is no longer valid')
+
+        return p._node
+
+    def __len__(self):
+        return self._size
+
+    def root(self):
+        return self._make_postion(self._root)
+
+    def parent(self, p):
+        node = self._validate(p)
+        return self._make_position(node._parent)
+
+    def children(self, p):
+        node = self._validate(p)
+        return self._make_position(node._children)
+
+    def num_children(self, p):
+        node = self._validate(p)
+        return len(node._children)
+
+    def __iter__(self):
+        for p in self.positions():
+            yield p.element()
+
+    def positions(self):
+        return self.preorder()
+
+    def preorder(self):
+        if not self.is_empty():
+            for p in self._subtree_preorder(self.root()):
+                yield p
+
+    def _subtree_preorder(self, p):
+        yield p
+        for c in self.children(p):
+            for other in self._subtree_preorder(c):
+                yield other
+
+    def postorder(self):
+        if not self.is_empty():
+            for p in self._subtree_postorder(self.root()):
+                yield p
+
+    def _subtree_postorder(self, p):
+        for c in self.children(p):
+            for other in self._subtree_postorder(c):
+                yield other
+        yield p
+
+    def breadthfirst(self):
+        if not self.is_empty():
+            fringe = LinkedQueue()
+            fringe.enqueue(self.root())
+            while not fringe.is_empty():
+                p = fringe.dequeue()
+                yield p
+                for c in self.children(p):
+                    fringe.enqueue(c)
 ```
 
 ## Binary Trees
@@ -95,7 +205,19 @@ A **binary tree** is an ordered tree with the following properties:
 
 The subtree rooted at the left child is called a **left subtree** and rooted at the right a **right subtree**.
 
+### Recursive Definitions of a Binary Search Tree
+A binary tree is either empty or consists of:
+
+1. a node `r`, called the root of `T`, that stores an element
+2. a binary tree (possibly empty), called the left subtree of `T`
+3. a binary tree (possibly empty), called the right subtree of `T`
+
+### Types
+
+#### Proper/Full
+
 A **Full** or **Proper** binary search tree is one where each node has either zero or two children. Therefore internal parent nodes always have exactly two children.
+![wiki source: https://en.wikipedia.org/wiki/Binary_tree#/media/File:Full_binary.svg](./images/full%20binary%20tree.png)
 
 An example is **expression trees** that capture the arithmetic expression e.g. `(((3+1)x3)/((9-5)+2)` as shown below:
 
@@ -110,13 +232,16 @@ An example is **expression trees** that capture the arithmetic expression e.g. `
         3    1    9   5
 ```
 
-### Recursive Definitions of a Binary Search Tree
+#### Perfect
+All interior nodes have two children and all leaves have the same depth or same level. A perfect binary tree is also a full binary tree.
 
-A binary tree is either empty or consists of:
+#### Complete
 
-1. a node `r`, called the root of `T`, that stores an element
-2. a binary tree (possibly empty), called the left subtree of `T`
-3. a binary tree (possibly empty), called the right subtree of `T`
+All levels of the binary tree (0, 1, 2, ..., h -1) have maximum number of nodes possible (i.e. $2^i$ nodes for $i \leq i \leq h-1$) and the remaining nodes at level `h` reside in the **leftmost** possible positions at that level.
+![wiki source: https://en.wikipedia.org/wiki/Binary_tree#/media/File:Complete_binary2.svg](./images/complete%20binary%20tree.png)
+
+#### Balanced
+Where left and rigt subtrees of every node differ in height by at most 1. i.e. where no leaf is much farther away from the root than any other leaf.
 
 ### Properties
 
@@ -143,11 +268,169 @@ Also if the tree is proper then:
 
 For reference, $n_E$ = external nodes = nodes with no children. $n_I$ = internal nodes = nodes which are not leaves.
 
-### Implementation of Abstract Class
-
-```python
+### Array Based Binary Tree
 
 ```
+                (/)
+                / \
+               /   \
+             (x)    (+)
+            /  \    /  \
+          (+)   3  (-)  2
+         /  \      / \
+        3    1    9   5
+
+bfs: [/, x, +, +, 3, -, 2, 3, 1, 9, 5, Null, Null]
+pre-order: [/, x, +, 3, Null, Null, 1, Null, Null, 3, Null, Null, +, -, 9, Null, Null, 5, Null, Null, 2, Null, Null]
+```
+
+BFS or level numbering of positions to build an array is fairly common. Here a position can be represented by a single integer - the main advantage of this data structure. But operations like deleting and promoting children takes `O(n)` time.
+
+https://en.wikipedia.org/wiki/Euler_tour_technique#/media/File:Stirling_permutation_Euler_tour.svg
+
+### Utilizing the General Tree Linked Structure
+
+For a binary tree the children are defined as `left` and `right` child.
+
+```python
+class BinaryTreeNode:
+    __slots__ = '_element', '_parent', '_left', '_right'
+
+    def __init__(self, element, parent=None, left=None, right=None):
+        self._element = element
+        self._parent = parent
+        self._left = left
+        self._right = right
+
+class BinaryTreePosition(Position):
+
+    def __init__(self, container, node):
+        self._container = container
+        self._node = node
+
+    def element(self):
+        return self._node._element
+
+    def __eq__(self, other):
+        return type(other) is type(self) and other._node is self._node
+
+class BinaryTree(Tree):
+
+    def __init__(self):
+        self._root = None
+        self._size = 0
+
+    def _make_position(self, node):
+        return self.Position(self, node) ifnode is not None else None
+
+    def _validate(self, p):
+        if not isinstance(p, self.Position):
+            raise TypeError('p must be proper Position type')
+
+        if p._container is not self:
+            raise ValueError('p does not belong to this container')
+
+        if p._node._parent is p._node:
+            raise ValueError('p is no longer valid')
+
+        return p._node
+
+    def __len__(self):
+        return self._size
+
+    def root(self):
+        return self._make_postion(self._root)
+
+    def parent(self, p):
+        node = self._validate(p)
+        return self._make_position(node._parent)
+
+    def left(self, p):
+        node = self._validate(p)
+        return self._make_position(node._left)
+
+    def right(self, p):
+        node = self._validate(p)
+        return self._make_position(node._right)
+
+    def num_children(self, p):
+        node = self._validate(p)
+        count = 0:
+        if node._left is not None:
+            count += 1
+        if node._right is not None:
+            count += 1
+        return len(count)
+
+    def _add_root(self, e):
+        if self._root is not None: raise ValueError('root exists')
+        self._size = 1
+        self._root = Node(e)
+        return self._make_position(self._root)
+
+    def _add_left(self, p, e):
+        node = self._validate(p)
+        if node._left is not None:
+            raise ValueError('Left child exists')
+        self._size += 1
+        node._left = self._Node(e, node)
+        return self._make_position(node._left)
+
+    def _add_right(self, p, e):
+        node = self._validate(p)
+        if node._right is not None:
+            raise ValueError('Right child exists')
+        self._size += 1
+        node._right = self._Node(e, node)
+        return self._make_position(node._right)
+
+    def _replace(self, p, e):
+        node = self._validate(p)
+        old = node._element
+        node._element = e
+        return old
+
+    def _delete(self, p):
+        node = self._validate(p)
+        if self.num_children(p) == 2:
+            raise ValueError('Position has two children')
+        child = node._left if node._left else node._right
+        if child is not None:
+            child._parent = node._parent
+        if node is self._root:
+            self._root = child
+        else:
+            parent = node._parent
+            if node is parent._left:
+                parent._left = child
+            else:
+                parent._right = child
+        self._size -= 1
+        node._parent = node
+        return node._element
+
+    def _attach(self, p, t1, t2):
+        node = self._validate(p)
+        if not self.is_leaf(p):
+            raise ValueError('position must be leaf')
+        if not type(self) is type(t1) is type(t2):
+            raise TypeError('Tree types must match')
+        self._size += len(t1) + len(t2)
+        if not t1.is_empty():
+            t1._root._parent = node
+            node._left = t1._root
+            t1._root = None
+            t1._size = 0
+        if not t2.is_empty():
+            t2._root._parent = node
+            node._right = t2._root
+            t2._root = None
+            t2._size = 0
+```
+
+## Tree Traversal Algorithms
+
+Go to [Algorithms >> Tree Traversals](../Algorithms/tree%20traversals.md)
 
 ## Binary Search Trees
 
@@ -160,7 +443,6 @@ For reference, $n_E$ = external nodes = nodes with no children. $n_I$ = internal
 ### Red-Black Trees
 
 ### Splay Trees
-
 
 ## Minimum Spanning Trees
 
