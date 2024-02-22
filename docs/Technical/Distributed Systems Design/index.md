@@ -20,32 +20,26 @@ Data intensive applications are one where:
 
 ## Key Requirements for Data Intensive Applications
 
-### Reliability
+=== "Reliability"
 
-- Fault tolerance
-- No un-authorized access
-- Chaos testing
-- Full machine failures
-- Bugs - Automating tests
-- Staging/Testing environment
-- Quickly roll-back
+    - **Fault Tolerance** - a single node failure does not result in system failure
+    - No un-authorized access
+    - Chaos testing
+    - Automating tests for bugs
+    - Staging/Testing environment
+    - Ability to quickly roll-back
 
-### Scalability
+=== "Scalability"
 
-- Handle higher traffic volume
-- Meeting traffic load with peak number of reads, writes and simultaneous users
-- Capacity planning
-- Response time vs throughput
-- End user response = server response time + network response time
-- 90th, 95th Percentile Service Level Objectives (SLOs) / Service Level Agreements (SLAs)
-- Scaling
-  - up (more powerful machine)
-  - out (distributed over many smaller machines)
+    - **Horizontal** - by adding more storage and compute nodes
+    - **Vertically** - Using more powerful machines
+    - Meeting traffic load with peak number of reads, writes and simultaneous users
+    - Requires capacity planning with anticipated Latency and Throughput estimates
+    - End user response is measured as the server response time + network response time
+    - 90th, 95th, 99th Percentile Service Level Objectives (SLOs) / Service Level Agreements (SLAs) are established
 
-### Maintainability
+=== "Maintainability"
 
-- Add new people to work
-- Productivity
-- Operable: Configurable and testable
-- Simple: Easy to understand and ramp up
-- Evolveable: Easy to change
+    - Operable: Configurable and Testable
+    - Simple: Easy to understand and ramp up
+    - Evolveable: Easy to change

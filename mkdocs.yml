@@ -16,7 +16,10 @@ theme:
   name: material
   font:
     text: Roboto
+    code: Roboto Mono
   features:
+    - search.highlight
+    - search.share
     - navigation.tabs
     - navigation.instant
     - navigation.instant.progress
@@ -50,7 +53,8 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - abbr
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style: true
   - footnotes
   - pymdownx.critic
   - pymdownx.betterem:
