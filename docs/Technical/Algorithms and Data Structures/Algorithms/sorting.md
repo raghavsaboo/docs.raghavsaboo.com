@@ -11,6 +11,8 @@
 
 ## Counting Sort
 
+## Heap Sort
+
 ## Insertion Sort
 ```pseudocode
 Algorithm InserstionSort(A):

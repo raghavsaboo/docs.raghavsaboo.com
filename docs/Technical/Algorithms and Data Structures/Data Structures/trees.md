@@ -286,8 +286,6 @@ pre-order: [/, x, +, 3, Null, Null, 1, Null, Null, 3, Null, Null, +, -, 9, Null,
 
 BFS or level numbering of positions to build an array is fairly common. Here a position can be represented by a single integer - the main advantage of this data structure. But operations like deleting and promoting children takes `O(n)` time.
 
-https://en.wikipedia.org/wiki/Euler_tour_technique#/media/File:Stirling_permutation_Euler_tour.svg
-
 ### Utilizing the General Tree Linked Structure
 
 For a binary tree the children are defined as `left` and `right` child.
@@ -432,7 +430,85 @@ class BinaryTree(Tree):
 
 Go to [Algorithms >> Tree Traversals](../Algorithms/tree%20traversals.md)
 
+We can also modify our base `Tree` class to implement the traversal methods as well, with the pre-order traversal being the default one.
+
+Refer to [Tree Abstract Base Class](#tree-abstract-base-class) for the other parts of the base class.
+
+Some key observations:
+
+1. we implement the traversals as generator functions where we yield each position to the caller and let the caller decide what action to perform at that position
+2. the `positions` method returns the iteration as an object - again acting as a generator
+3. the `breadth first search` or `bfs` traversal is iterative - not recursive
+4. the `inorder` traversal is only implemented for `binary trees` - it does not generalize for generic trees
+
+```python
+class Tree(ABC):
+
+    ...
+    def positions(self):
+        self.preorder()
+
+    def preorder(self):
+        if not self.is_empty():
+            for p in self._subtree_preorder(self.root()):
+                yield p
+
+    def _subtree_preorder(self, p):
+        yield p
+        for c in self.children(p):
+            for other in self._subtree_preorder(c):
+                yield other
+
+    def postorder(self):
+        if not self.is_empty():
+            for p in self._subtree_postorder(self.root()):
+                yield p
+
+    def _subtree_postorder(self, p):
+        for c in self.children(p):
+            for other in self._subtree_postorder(c):
+                yield other
+        yield p 
+        
+    def bfs(self):
+        if not self.is_empty():
+            fringe = LinkedQueue()
+            fringe.enqueue(self.root())
+            while not fringe.is_empty():
+                p = fringe.dequeue()
+                yield p
+                for c in self.children(p):
+                    fringe.enqueue(c)
+
+    def inorder(self):
+        if not self.is_empty():
+            for p in self._subtree_inorder(self.root()):
+                yield p
+
+    def _subtree_inorder(self, p):
+        if self.left(p) is not None:
+            for other in self._subtree_inorder(self.left(p)):
+                yield other
+        yield p
+        if self.right(p) is not None:
+            for other in self._subtree_inorder(self.right(p)):
+                yield other
+    ...
+```
+
+As can be seen, while we can implement specific traversals for the `Tree` class, or the `inorder` method for binary trees, the code is not general enough to capture the range of computations possible. These were all custom implementations with some repeating algorithmic patterns (e.g. blending of work performed before or after recursion of subtrees). 
+
+A more general framework for implemting tree traversals is through [Euler tour traversals](../Algorithms/tree%20traversals.md##Euler%20Tours) which also uses the [Template method](../../Object%20Oriented%20Programming/template%20method%20pattern.md).
+
 ## Binary Search Trees
+
+If we have a set of unique elements that have an order relation  (e.g. a set of integers), we can construct a **binary search tree** such that for each position `p` of the tree `T`:
+
+1. Position `p` stores an element of the set, denoted as `e(p)`
+2. Elements stored in the left subtree of `p` (if any) are less than `e(p)`
+3. Elements stored in the right subtree of `p` (if any) are greater than `e(p)`
+
+![wiki source: https://en.wikipedia.org/wiki/Binary_search_tree#/media/File:Binary_search_tree.svg](./images/binary%20search%20tree.png)
 
 ## Self Balancing Trees
 

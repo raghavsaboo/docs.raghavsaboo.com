@@ -1,6 +1,6 @@
 # Tree Traversals
 
-Systematic way of accessing all of the positions of a tree.
+Systematic way of accessing all of the positions of a tree. An example of implementing these in an abstree `Tree` datastructure is presented in [Trees](../Data%20Structures/trees.md##Tree%20Traversal%20Algorithms)
 
 ## Pre-Order, Post-Order, and In-Order
 
@@ -63,7 +63,80 @@ def breadth_first_search(tree):
 
 ## Kruskal's
 
-## Euler Tour and Template Pattern
-![Wikipedia source: https://en.wikipedia.org/wiki/Euler_tour_technique#/media/File:Stirling_permutation_Euler_tour.svg](./images/euler%20tour.png)\
+## Euler Tours
+The Euler tour traversal of a general tree `T` is defined as a "walk" around `T`, where we start by going from the root towards its leftmost child, viewing the edges of `T` as being "walls" that we always keep to the left.
+
+The complexity of the walk is `O(n)` - it progresses exactly to times along each of the `n-1` edges of the tree - once going downward along the edge, and later going upward along the edge. 
+
+![Wikipedia source: https://en.wikipedia.org/wiki/Euler_tour_technique#/media/File:Stirling_permutation_Euler_tour.svg](./images/euler%20tour.png)
+
+To unify this with `preorder` and `postorder` traversals, we can think of there being two notable "visits" to each position `p`:
+
+- a `pre visit` occurs when first reaching the position, that is, whe the walk passes immediately left of the node in our visualization
+- a `post visit` occurs when the walk later proceeds upward from that position, that is, when the walk pass to the right of the node in our visualization
+
+Euler tour can be done recursively such that in between the pre-visit and post-visit of a position will be a recursve tour of each of the subtrees. 
+
+```python
+Algorithm eulertour(T, p):
+     perform the "previsit" action for position p
+     for each child c in T.children(p):
+        eulertou(T, c)
+
+    perform the "postvisit" action for position p
+```
+
+A more complete implementation is below, where we use the [Template Method](../../Object%20Oriented%20Programming/template%20method%20pattern.md) to define the generic traversal algorithm, and use two **hooks** (auxiliary functions) - one for the previsit before the subtrees are traversed, and another for the postvisit after the completion of subtree traversals.
+
+The hooks can be overridden to provide specialized behavior.
+
+```python
+class EulerTour:
+
+    def __init__(self, tree):
+        self._tree = tree
+
+    def tree(self):
+        return self._tree
+
+    def execute(self):
+        if len(self._tree) > 0:
+            return self._tour(self._tree.root(), 0, [])
+
+    def _tour(self, p, d, path):
+        """
+        Perform the tour of a subtree rooted at Position p.
+
+        p = position of current node being visited
+        d = depth of p in the tree
+        path = list of indices of children on path from root to p
+        """
+
+        # previsit p
+        self._hook_previsit(p, d, path)
+
+        results = []
+
+        # add new index to the end of path before recursion
+        path.append(0)
+
+        for c in self._tree.children(p):
+            # recur on child's subtree
+            results.append(self._tour(c, d+1, path))
+            # increment index
+            path[-1] += 1
+        # remove extraneous index from the end of path
+        path.pop()
+        # post visit p
+        answer = self._hook_postvisit(p, d, path, results)
+
+        return answer
+
+    def _hook_previsit(self, p, d, path):
+        pass
+
+    def _hook_postvisit(self, p, d, path):
+        pass 
+```
 
 ## Applications

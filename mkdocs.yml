@@ -1,4 +1,5 @@
 site_name: Raghav Saboo's Wiki
+site_url: https://docs.raghavsaboo.com
 plugins:
   - search
   # - mkdocs-jupyter:
@@ -10,6 +11,7 @@ plugins:
       enable_default_jupyter_cell_styling: false
       enable_default_pandas_dataframe_styling: false
   - inline-svg
+  - offline
 theme:
   name: material
   font:
@@ -18,6 +20,11 @@ theme:
     - navigation.tabs
     - navigation.instant
     - navigation.instant.progress
+    - navigation.tracking
+    # - navigation.prune
+    - toc.follow
+    - navigation.top
+    - header.autohide
   palette:
     primary: white
     accent: light blue
@@ -39,6 +46,7 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.snippets
   - attr_list
+  - md_in_html
   - admonition
   - pymdownx.details
   - abbr
@@ -63,6 +71,8 @@ extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 google_analytics:
-  - UA-187552463-1
+  - UA-3BR421QVX9
   - auto
 copyright: Copyright &copy; 2024 Raghav Saboo
+extra:
+  generator: false
