@@ -1,5 +1,8 @@
 # Tries
 
+!!! note ""
+    TODO: Add notes here - leaving blank for now.
+
 ## Standard Tries
 
 ## Compressed Tries

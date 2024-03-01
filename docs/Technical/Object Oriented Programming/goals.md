@@ -1,5 +1,9 @@
 # Goals and Principles
 
+!!! note ""
+    TODO: Add notes here - leaving blank for now.
+
+
 ## Design
 
 ## Design Patterns

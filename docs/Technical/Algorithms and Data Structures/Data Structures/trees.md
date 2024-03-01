@@ -512,6 +512,10 @@ If we have a set of unique elements that have an order relation  (e.g. a set of 
 
 ## Self Balancing Trees
 
+!!! note ""
+    TODO: Add notes here - leaving blank for now.
+
+
 ### AVL Trees
 
 ### (2,4) Trees

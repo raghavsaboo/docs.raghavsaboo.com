@@ -1,4 +1,9 @@
 # Sorting Algorithms
+
+!!! note ""
+    TODO: Add notes here - leaving blank for now.
+
+
 ## Bubble Sort
 
 ## Merge Sort

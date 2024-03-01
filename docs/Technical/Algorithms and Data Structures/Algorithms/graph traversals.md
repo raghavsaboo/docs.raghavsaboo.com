@@ -1,5 +1,9 @@
 # Graph Traversals
 
+!!! note ""
+    TODO: Add notes here - leaving blank for now.
+
+
 ## Depth First Search
 
 ## Breadth First Search
