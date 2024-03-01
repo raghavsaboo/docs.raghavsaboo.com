@@ -12,6 +12,7 @@ plugins:
       enable_default_pandas_dataframe_styling: false
   - inline-svg
   - offline
+  - glightbox
 theme:
   name: material
   font:
