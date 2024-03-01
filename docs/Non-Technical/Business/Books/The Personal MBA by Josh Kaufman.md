@@ -1,4 +1,4 @@
-# The Personal MBA by Rory Sutherland
+# The Personal MBA
 
 Link: [The Personal MBA](https://personalmba.com/)
 

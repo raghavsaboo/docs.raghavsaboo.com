@@ -510,6 +510,16 @@ If we have a set of unique elements that have an order relation  (e.g. a set of 
 
 ![wiki source: https://en.wikipedia.org/wiki/Binary_search_tree#/media/File:Binary_search_tree.svg](./images/binary%20search%20tree.png)
 
+Binary Search Trees can be used to efficiently implement a **sorted map** - assuming we have an order relation defined on the keys. 
+
+## Navigating Binary Search Trees
+
+An **inorder traversal** of a binary search tree visits positions in increasing order of their keys. Therefore if presented with a binary search tree, we can produce a sorted iteration of the keys of a map in linear time.
+
+### Searches
+
+We can traverse a binary search tree to search for specific keys in O(log(n)) time complexty **as long as it is balanced**. In the worst (imbalanced) case the height `h` of the tree can be equal to the `n` in which case the time complexity would be O(h) = O(n) instead.
+
 ## Self Balancing Trees
 
 !!! note ""

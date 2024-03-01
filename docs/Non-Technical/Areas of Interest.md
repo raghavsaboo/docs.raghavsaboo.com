@@ -3,3 +3,5 @@
   - Spoken Delivery
 - Psychology
 - Business
+- History
+- Movies
