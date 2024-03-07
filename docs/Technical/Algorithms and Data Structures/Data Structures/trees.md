@@ -522,6 +522,7 @@ We can traverse a binary search tree to search for specific keys in O(log(n)) ti
 
 ## Self Balancing Trees
 
+
 !!! note ""
     TODO: Add notes here - leaving blank for now.
 
