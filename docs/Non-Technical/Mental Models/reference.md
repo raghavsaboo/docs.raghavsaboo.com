@@ -1,1 +1,2 @@
-https://modelthinkers.com/
+
+- [Model Thinkers](https://modelthinkers.com/)
