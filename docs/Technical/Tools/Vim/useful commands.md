@@ -1,3 +1,5 @@
+# Useful Vim Commands
+
 - `gg`              : Move to the first line of the file
 - `G`               : Move to the last line
 - `zc`              : Close current fold
@@ -6,7 +8,7 @@
 - `zi`              : Toggle folding entirely
 - `vab`             : Select content within parenthesis () along with itself
 - `va{`             : Select content within curly brackets {} along with itself etc. (you can replace the character with any bracket type)
-- `vib`             : Select content inside paranethesis () only
+- `vib`             : Select content inside parenthesis () only
 - `vi{`             : Select content inside curly brackets {} only etc.
 - `%`               : Jump between matching brackets, tags etc.
 - `vit`             : Select content between tags
