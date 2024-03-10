@@ -32,8 +32,8 @@ Data intensive applications are one where:
 === "Scalability"
 
     - **Horizontal** - by adding more storage and compute nodes
-    - **Vertically** - Using more powerful machines
-    - Meeting traffic load with peak number of reads, writes and simultaneous users
+    - **Vertically** - using more powerful machines
+    - **Latency/Throughput Tradeoff** - Meeting traffic load with peak number of reads, writes and simultaneous users
     - Requires capacity planning with anticipated Latency and Throughput estimates
     - End user response is measured as the server response time + network response time
     - 90th, 95th, 99th Percentile Service Level Objectives (SLOs) / Service Level Agreements (SLAs) are established
@@ -43,3 +43,10 @@ Data intensive applications are one where:
     - Operable: Configurable and Testable
     - Simple: Easy to understand and ramp up
     - Evolveable: Easy to change
+
+## Key Challenges
+
+1. **Network Reliability** - networks are inherently unreliable, and communication between machines is not guaranteed
+2. **Data Replication** - replicating data across multiple nodes over a network can result in lag and write conflicts
+3. **Consistency** - data is spread across multiple machines, and there can be different versions of the data
+

@@ -14,6 +14,9 @@ https://leetcode.com/problems/n-th-tribonacci-number/description/
 ### Perfect Squares
 https://leetcode.com/problems/perfect-squares/description/
 
+## Matrix Chain Multiplication
+
+
 ## Linear Sequences with Constant Transition
 Here the solution requires us to solve the sub problem on every prefix of the array. The definition of a prefix of an array is a subarray from 0 to i for some i.
 
@@ -152,7 +155,6 @@ https://leetcode.com/problems/last-stone-weight/
 ### Profitable Schemes
 https://leetcode.com/problems/profitable-schemes/
 
-## Matrix Chain Multiplication
 
 ## 1D Dynamic Programming
 

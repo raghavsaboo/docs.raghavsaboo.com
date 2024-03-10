@@ -22,3 +22,7 @@ General:
 - Type Library: Zod
 - Runtime: NodeJS
 - NextJS
+
+## Key Features of NextJS to use
+- Loading templates
+- Route Caching
