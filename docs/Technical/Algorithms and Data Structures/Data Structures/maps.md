@@ -176,9 +176,16 @@ class ChainHashMap(HashMapBase):
           yield key
 ```
 
-#### Linear Probing
+#### Open Addressing
+
 !!! note ""
-    TODO: Add notes here - leaving blank for now.
+    TODO: Add more notes here to describe this clearly
+
+Once a collision takes place, open addressing (also known as closed hashing) computes new positions using a probe sequence and the next record is stored in that position. There are some well-known probe sequences:
+
+- Linear Probing: The interval between the probes is fixed to 1. This means that the very next available position in the table would be tried.
+- Quadratic Probing: The interval between the probes increases quadratically. This means that the next available position that would be tried would increase quadratically.
+- Double Hashing: The interval between probes is fixed for each record but the hash is computed again by double hashing.
 
 ```python
 class ProbeHashMap(HashMapBase):
