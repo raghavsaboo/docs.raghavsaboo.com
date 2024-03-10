@@ -23,15 +23,15 @@
 
 - [Trie]() - Search Autocomplete
 - [Quadtree]() - Location Based Indexing
-- [R-Tree](./Key%20Datastructures.md) - Location Based Indexing
+- [R-Tree](./Key%20Datastructures.md) - Location Based Indexing, sercing multi-dimension shapes, asuch as nearest neighbor lookups
 - [Geohash]() - Location Based Indexing
-- [Skiplist](./Key%20Datastructures.md)
-- [Hash Index](./Key%20Datastructures.md)
-- [SSTable](./Key%20Datastructures.md)
-- [LSM Tree](./Key%20Datastructures.md)
-- [B-Tree](./Key%20Datastructures.md)
-- [Inverted Index](./Key%20Datastructures.md)
-- [Suffix Tree](./Key%20Datastructures.md)
+- [Skiplist](./Key%20Datastructures.md) - in memory index type
+- [Hash Index](./Key%20Datastructures.md) - in-memory index type - common implementation of the "Map" datastructure
+- [SSTable](./Key%20Datastructures.md) - disk based "Map" datastructure
+- [LSM Tree](./Key%20Datastructures.md) - skiplist (memory) + sstable (disk) combination to provide high write throughput
+- [B-Tree](./Key%20Datastructures.md) - disk based index with consistent read/write performance - most popular index used in databases
+- [Inverted Index](./Key%20Datastructures.md) - used for document indexing in search
+- [Suffix Tree](./Key%20Datastructures.md) - used for string pattern search, such as string suffix match
 
 ## Algorithms to Know
 
