@@ -12,3 +12,13 @@ Asynchronous event based patter is associated with **choreography**, where an **
 Both orchestration and choreography are useful for solving different problems, and can be used together in a **hybrid architecture**.
 
 ![source: https://solace.com/wp-content/uploads/2019/11/Orchestration-VS-Choreography-1200x600.png](https://solace.com/wp-content/uploads/2019/11/Orchestration-VS-Choreography-1200x600.png)
+
+## Benefits of Orchestration
+
+1. Reliability - has built-in transaction management and error handling, while choreography is point-to-point communications and the fault tolerance scenarios are much more complicated
+2. Scalability - when adding a new service, only the orchestrator needs to modify the interaction rules
+
+## Limits of Orchestration
+
+1. Performance - all services talk via a centralized orchestrator, so latecy is higher than it is with choreography. The throughput is bound to the capacity of the orchestrator.
+2. Single poit of failure - if the orchestrator goes down, no services can talk to each other. Needs to be highly avialable.

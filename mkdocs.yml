@@ -13,6 +13,7 @@ plugins:
   - inline-svg
   - offline
   - glightbox
+  - awesome-pages
 theme:
   name: material
   font:
