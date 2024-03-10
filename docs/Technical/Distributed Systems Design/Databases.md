@@ -16,11 +16,11 @@ A **database transcation** is a logical unit of work performed on a datbaase and
 
 Defining the data types used and stored within a system, the relationship between these types, and the way the data is organized through its attributes.
 
-**Entity** is an object represented in a database, and a property of this entity is called an **attribute**. 
+**Entity** is an object represented in a database, and a property of this entity is called an **attribute**.
 
-**Database schema** refers to the physical implementation of the database model to a specific database platform. The design of the data models is the same regardless of the databse platform or type. 
+**Database schema** refers to the physical implementation of the database model to a specific database platform. The design of the data models is the same regardless of the databse platform or type.
 
-**ERDs** visualizes the relationships between entities and attributes.There are three main components: Entities, Attributes, and Relationships. 
+**ERDs** visualizes the relationships between entities and attributes.There are three main components: Entities, Attributes, and Relationships.
 
 ```json
 // Courses
@@ -40,15 +40,16 @@ Defining the data types used and stored within a system, the relationship betwee
 
 ### Attributes and Relationships
 
-Attributes have types and expected sices specified. 
+Attributes have types and expected sizes specified.
 
 Also they may be:
 
 - **Primary Key (PK)** - used to identify an entity
-- **Foreign Key (PK)** - used to uniquely identify another entityand link two entities together
-- **Composite Primary Key (CPK)** - a key that uses two or more attribtues to uniquely identify that entity (e.g. child entities that can be uniquely identified using other entities)
+- **Foreign Key (PK)** - used to uniquely identify another entity and link two entities together
+- **Composite Primary Key (CPK)** - a key that uses two or more attributes to uniquely identify that entity (e.g. child entities that can be uniquely identified using other entities)
 
 ### Cardinality and Modality
+
 **Cardinality** refers to the maximum number of elements of an entity that are associated with the elements in another entity. There are the following cardinalities:
 
 - **One-to-One**
@@ -59,35 +60,92 @@ Also they may be:
 
 ## Relational vs. NoSQL/Non-Relational Databases
 
-=== "Relational"
-    Relational databse represents data in **tables** - each row being a record.
+| Feature                    | SQL Databases                           | NoSQL Databases                                         |
+|----------------------------|-----------------------------------------|----------------------------------------------------------|
+| **Data Model**             | Organized into structured tables        | Flexible schema, supports various data models           |
+| **Query Language**         | SQL (Structured Query Language)         | Custom query languages or APIs (e.g., MongoDB Query Language) |
+| **Consistency Model**      | ACID-compliant transactions             | Basically Available, Soft state, Eventually consistent (BASE) |
+| **Scalability**            | Generally vertical scaling, limited horizontal scaling | Horizontal scaling, distributed architectures            |
+| **Use Cases**              | Enterprise applications, OLTP, data warehousing, OLAP | Real-time analytics, web applications, IoT, content management |
+| **Examples**               | MySQL, PostgreSQL, SQL Server           | MongoDB, Cassandra, Redis, Elasticsearch, Neo4j          |
+| **Challenges**             | Schema evolution, performance tuning     | Data consistency, schema design, tooling ecosystem       |
 
-    The columns of the table can refer to data in other tables - creating relationships.
+### Relational Database Details
 
-    Use cases:
-    
-    - OLTP: Online transaction processing
-    - OLAP: Online analytical processing
-    - Business intelligence and data warehouses
-    - Logistics and inventory management
-    - Financial services and payments
+#### Types
 
-=== "NoSQL/Non-Relational"
-    Don't store data in tables - a variety of data structures are used depending on the usecase. Additionally these databases don't have enforced relational models. 
+There are two main categories of databases - OLTP (Online Transaction Processing Database)
+and OLAP (Online Analytical Processing Database) each with a different read pattern,
+write patterns, user using it, data size etc.
 
-    Examples are:
+1. OLTP - Online Transaction Processing Database optimized for latency.
+   - eg. MySQL
+   - Usually row-order store
+     - easy to modify/add a record
+     - might read in unnecessary data
+2. OLAP - Online Analytical Processing Databases optimized for data crunching.
+   - Data Warehousing (Star/Snowflake schema), column oriented
+   - Column compression, data cubes, optimized for reads/queries
+   - Materialized views, lack of flexibility
+   - HBase, Hive, Spark
+   - Usually column-order store
+     - Only need to read in relevant data
+     - Tuple writes require multiple accesses
+     - Suitable for read-mostly, read-intensive, large data repositories
 
-    - key-value
-    - column-oriented
-    - graph
-    
-    Use cases:
+#### Storage Engines / Data Structures
 
-    - Real time analytics
-    - Logging and click driven data
-    - Fraud detection
-    - Recommendations and news feeds
-    - Internet of Things sensor data
-    - High throughput messaging
-    - Video and photo sharing
+- Two families of storage engines used by databases:
+  - Log structured - LSM-Trees e.g. SSTables -> HBASE, Cassandra
+  - Page-Oriented - B-trees -> RDBMS
+- These are answers to limitations of disk access.
 
+##### LSM-Trees (Log Sort Merge) Storage
+
+- SSTables - in-memory mem table backend by Disk SSTable file, sorted by keys.
+  - e.g. Red-Black tree or AVL trees. Supports high write throughput.
+- Lucene - full-text search is much more complex than key-value index like SSTables. However,
+  it does internally use SSTables for term dictionary.
+- Bloom filters - memory efficient data structure used for approximating the contents
+  of a set. It can tell you if a key does not appear in the database, thus saves many
+  unnecessary disk reads for non-existent keys.
+- Compaction is a background process of the means of throwing away duplicate keys in
+  the log and keeping only the most recent update for each key.
+
+##### B-Trees Storage
+
+- Most widely used indexing structure is B-Trees. One place per key!
+- They are the standard implementation in RDBMS and NoSQL stores today.
+- It also keeps key-value sorted by keys which allows quick lookups.
+- B-Trees are designed and optimized for the hardward as disks are arranged in fixed
+  sized blocks, B-Trees also break down the data into fixed size 4KB blocks. There is
+  a root node and a branching factor (references to child pages)
+- 4 level tree with 4KB pages with branching factor of 500 can store up to 256TB! B-Tree
+  is optimized for reads!
+- Write ahead log is used for crash recovery, latches for concurrency.
+- Sibling references in child node allows for easier scannig of sequential keys.
+
+### NoSQL Database Details
+
+
+
+## Indexing
+
+- **Purpose**: Indexing is a technique used in databases to optimize query performance by creating data structures that allow for fast data retrieval.
+- **Why it's Used**: Indexing improves query performance by providing efficient access paths to data, reducing the time required to search and retrieve data from tables.
+
+- **Types of Indexes**:
+  - **B-Tree Index**: Widely used for range queries, ordered traversal, and equality searches in both SQL and NoSQL databases.
+  - **Hash-based Index**: Provides fast lookups for equality searches, commonly used in SQL databases.
+  - **Bitmap Index**: Efficient for low-cardinality columns, suitable for boolean and categorical data. Not commonly used in SQL databases, but may be utilized in some NoSQL databases.
+  - **Full-Text Index**: Optimized for searching textual data, supports complex text searches and relevance ranking. Used in some SQL databases (e.g., MySQL, PostgreSQL) and NoSQL databases (e.g., Elasticsearch, MongoDB with text search).
+  - **Spatial Index**: Designed for indexing geometric data, enables efficient spatial queries and joins. Used in SQL databases supporting geospatial data types (e.g., PostGIS in PostgreSQL) and some NoSQL databases (e.g., MongoDB with geospatial queries).
+
+### Other Indexing Concepts
+
+- Clustered index - inline storing of row values
+- Secondary index - helps with joins
+- Covering index - few columns are included
+- Multi-column index - multiple keys concatenated
+- Full-text search and fuzzy indexes help with spelling mistakes (edit distances), grammar,
+  synonyms, words near each other, linguistics etc.
