@@ -45,6 +45,63 @@
 - [HyperLogLog]() - Count unique values fast
 - [Count-min Sketch]() - Estimate frequencies of items
 
+## Key Topics
+
+### System Requirements Analysis
+
+- Understand the functional and non-functional requirements of the system.
+- Discuss use cases, user expectations, and system constraints.
+
+### System Architecture
+
+- Design a high-level architecture that addresses the system's requirements.
+- Discuss components, their responsibilities, and interactions.
+- Consider microservices, service-oriented architecture (SOA), or serverless architecture based on the requirements.
+
+### Scalability
+
+- Discuss horizontal and vertical scaling strategies.
+- Consider sharding, partitioning, and replication techniques.
+- Discuss load balancing and auto-scaling mechanisms.
+
+### Availability and Fault Tolerance
+
+- Discuss redundancy, failover, and disaster recovery strategies.
+- Consider techniques such as replication, data mirroring, and distributed consensus algorithms.
+- Discuss how to handle network partitions and node failures.
+
+### Consistency and Concurrency
+
+- Discuss consistency models (e.g., eventual consistency, strong consistency) based on application requirements.
+- Consider distributed locking, consensus algorithms (e.g., Paxos, Raft), and coordination services (e.g., ZooKeeper, etcd).
+- Discuss isolation levels and transaction management.
+
+### Data Storage and Retrieval
+
+- Discuss database selection based on requirements (e.g., relational databases, NoSQL databases, distributed key-value stores).
+- Consider data partitioning, indexing, and caching strategies.
+- Discuss data replication, consistency, and durability guarantees.
+
+### Messaging and Communication
+
+- Discuss message queuing, publish-subscribe patterns, and event-driven architectures.
+- Consider message brokers (e.g., Kafka, RabbitMQ) and communication protocols (e.g., HTTP, gRPC).
+
+### Security
+
+- Discuss authentication, authorization, encryption, and data privacy requirements.
+- Consider network security, access control mechanisms, and secure communication protocols.
+
+### Monitoring and Management
+
+- Discuss logging, monitoring, and alerting requirements.
+- Consider metrics collection, distributed tracing, and centralized logging solutions.
+- Discuss deployment strategies and continuous integration/continuous deployment (CI/CD) pipelines.
+
+### Cost Optimization
+
+- Discuss resource utilization, cost-effective scaling strategies, and resource provisioning.
+- Consider serverless computing, containerization, and cloud services pricing models.
 
 ## Writing Service Interfaces
 
@@ -75,4 +132,4 @@ CourseService
 
 ==Reminder==: the **message data structure** is different from the **data model** - e.g. song_names could be stored as rows that are aggregated into a sequential datastructure like an array in the course response.
 
-A system would have multiple services, and each service would have multiple methods. Making them descriptive makes the interview self-explanatory and self-documenting. 
+A system would have multiple services, and each service would have multiple methods. Making them descriptive makes the interview self-explanatory and self-documenting.

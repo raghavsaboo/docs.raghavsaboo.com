@@ -104,6 +104,21 @@ These are answers to limitations of disk access.
 
 ### NoSQL Database Details
 
+#### Key Characteristics
+
+- Flexible Schema: NoSQL databases typically support schema-less or flexible schema designs, allowing for dynamic and varied data structures within the same database.
+- Scalability: NoSQL databases are designed to scale horizontally, allowing for distributed architectures and seamless expansion across multiple nodes or clusters.
+- High Performance: NoSQL databases are optimized for specific use cases, such as high-volume read/write operations, real-time analytics, and large-scale data processing.
+- Diverse Data Models: NoSQL databases support various data models, including document-oriented, key-value, wide-column, and graph databases, catering to different data storage and retrieval requirements.
+- CAP Theorem: NoSQL databases often prioritize availability and partition tolerance over strict consistency, adhering to the principles outlined in the CAP theorem.
+
+#### Types of NoSQL Databases
+
+- Document-oriented Databases: Store data in flexible, JSON-like documents, allowing for nested structures and dynamic schemas. Examples include MongoDB, Couchbase.
+- Key-Value Stores: Store data as key-value pairs, providing fast access to individual records. Examples include Redis, Amazon DynamoDB.
+- Wide-column Stores (Column-family Databases): Store data in columns rather than rows, allowing for efficient storage and retrieval of large datasets. Examples include Apache Cassandra, HBase.
+- Graph Databases: Store data in graph structures, representing relationships between entities as nodes and edges. Examples include Neo4j, Amazon Neptune.
+
 ## Indexing
 
 - **Purpose**: Indexing is a technique used in databases to optimize query performance by creating data structures that allow for fast data retrieval.
