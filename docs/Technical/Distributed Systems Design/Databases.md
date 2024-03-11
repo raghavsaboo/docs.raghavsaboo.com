@@ -4,12 +4,12 @@ A **database** is a structured collection of data stored through a computer syst
 
 ## Transactions and Operations
 
-A **database transcation** is a logical unit of work performed on a datbaase and may consist of multiple **operations**. An **operation** is a smaller unit of work used to complete a transaction.
+A **database transaction** is a logical unit of work performed on a database and may consist of multiple **operations**. An **operation** is a smaller unit of work used to complete a transaction.
 
 ## Key Metrics
 
 1. **Availability** - percentage of time the suers of the database can access it
-2. **Reliability** - rate of data corruption, unsecure authorizaiton, and recoverabiity
+2. **Reliability** - rate of data corruption, unsecure authorization, and recoverability
 3. **Persistence** - the data can be either written stably to non-volatile memory such as a hard drive or solid state drive (which will retain data even if it is not powered), or to volatile memory (e.g RAM) on in-memory databases that lack persistence.
 
 ## Database Model
@@ -18,7 +18,7 @@ Defining the data types used and stored within a system, the relationship betwee
 
 **Entity** is an object represented in a database, and a property of this entity is called an **attribute**.
 
-**Database schema** refers to the physical implementation of the database model to a specific database platform. The design of the data models is the same regardless of the databse platform or type.
+**Database schema** refers to the physical implementation of the database model to a specific database platform. The design of the data models is the same regardless of the database platform or type.
 
 **ERDs** visualizes the relationships between entities and attributes.There are three main components: Entities, Attributes, and Relationships.
 
@@ -56,19 +56,19 @@ Also they may be:
 - **One-to-Many**
 - **Many-to-Many**
 
-**Modality** refers tot he minimum number of elements of an entitiy that are associated with elements in another entity.
+**Modality** refers tot he minimum number of elements of an entity that are associated with elements in another entity.
 
 ## Relational vs. NoSQL/Non-Relational Databases
 
-| Feature                    | SQL Databases                           | NoSQL Databases                                         |
-|----------------------------|-----------------------------------------|----------------------------------------------------------|
-| **Data Model**             | Organized into structured tables        | Flexible schema, supports various data models           |
-| **Query Language**         | SQL (Structured Query Language)         | Custom query languages or APIs (e.g., MongoDB Query Language) |
-| **Consistency Model**      | ACID-compliant transactions             | Basically Available, Soft state, Eventually consistent (BASE) |
-| **Scalability**            | Generally vertical scaling, limited horizontal scaling | Horizontal scaling, distributed architectures            |
-| **Use Cases**              | Enterprise applications, OLTP, data warehousing, OLAP | Real-time analytics, web applications, IoT, content management |
-| **Examples**               | MySQL, PostgreSQL, SQL Server           | MongoDB, Cassandra, Redis, Elasticsearch, Neo4j          |
-| **Challenges**             | Schema evolution, performance tuning     | Data consistency, schema design, tooling ecosystem       |
+| Feature               | SQL Databases                                          | NoSQL Databases                                                |
+| --------------------- | ------------------------------------------------------ | -------------------------------------------------------------- |
+| **Data Model**        | Organized into structured tables                       | Flexible schema, supports various data models                  |
+| **Query Language**    | SQL (Structured Query Language)                        | Custom query languages or APIs (e.g., MongoDB Query Language)  |
+| **Consistency Model** | ACID-compliant transactions                            | Basically Available, Soft state, Eventually consistent (BASE)  |
+| **Scalability**       | Generally vertical scaling, limited horizontal scaling | Horizontal scaling, distributed architectures                  |
+| **Use Cases**         | Enterprise applications, OLTP, data warehousing, OLAP  | Real-time analytics, web applications, IoT, content management |
+| **Examples**          | MySQL, PostgreSQL, SQL Server                          | MongoDB, Cassandra, Redis, Elasticsearch, Neo4j                |
+| **Challenges**        | Schema evolution, performance tuning                   | Data consistency, schema design, tooling ecosystem             |
 
 ### Relational Database Details
 
@@ -95,57 +95,23 @@ write patterns, user using it, data size etc.
 
 #### Storage Engines / Data Structures
 
-- Two families of storage engines used by databases:
-  - Log structured - LSM-Trees e.g. SSTables -> HBASE, Cassandra
-  - Page-Oriented - B-trees -> RDBMS
-- These are answers to limitations of disk access.
+Two families of storage engines used by databases:
 
-##### LSM-Trees (Log Sort Merge) Storage
+- **Log structured** - LSM-Trees e.g. SSTables -> HBASE, Cassandra
+- **Page-Oriented** - B-trees -> Traditional RDBMS
 
-- SSTables - in-memory mem table backend by Disk SSTable file, sorted by keys.
-  - e.g. Red-Black tree or AVL trees. Supports high write throughput.
-- Lucene - full-text search is much more complex than key-value index like SSTables. However,
-  it does internally use SSTables for term dictionary.
-- Bloom filters - memory efficient data structure used for approximating the contents
-  of a set. It can tell you if a key does not appear in the database, thus saves many
-  unnecessary disk reads for non-existent keys.
-- Compaction is a background process of the means of throwing away duplicate keys in
-  the log and keeping only the most recent update for each key.
-
-##### B-Trees Storage
-
-- Most widely used indexing structure is B-Trees. One place per key!
-- They are the standard implementation in RDBMS and NoSQL stores today.
-- It also keeps key-value sorted by keys which allows quick lookups.
-- B-Trees are designed and optimized for the hardward as disks are arranged in fixed
-  sized blocks, B-Trees also break down the data into fixed size 4KB blocks. There is
-  a root node and a branching factor (references to child pages)
-- 4 level tree with 4KB pages with branching factor of 500 can store up to 256TB! B-Tree
-  is optimized for reads!
-- Write ahead log is used for crash recovery, latches for concurrency.
-- Sibling references in child node allows for easier scannig of sequential keys.
+These are answers to limitations of disk access.
 
 ### NoSQL Database Details
-
-
 
 ## Indexing
 
 - **Purpose**: Indexing is a technique used in databases to optimize query performance by creating data structures that allow for fast data retrieval.
 - **Why it's Used**: Indexing improves query performance by providing efficient access paths to data, reducing the time required to search and retrieve data from tables.
 
-- **Types of Indexes**:
+- **Types of Indices**:
   - **B-Tree Index**: Widely used for range queries, ordered traversal, and equality searches in both SQL and NoSQL databases.
   - **Hash-based Index**: Provides fast lookups for equality searches, commonly used in SQL databases.
   - **Bitmap Index**: Efficient for low-cardinality columns, suitable for boolean and categorical data. Not commonly used in SQL databases, but may be utilized in some NoSQL databases.
   - **Full-Text Index**: Optimized for searching textual data, supports complex text searches and relevance ranking. Used in some SQL databases (e.g., MySQL, PostgreSQL) and NoSQL databases (e.g., Elasticsearch, MongoDB with text search).
   - **Spatial Index**: Designed for indexing geometric data, enables efficient spatial queries and joins. Used in SQL databases supporting geospatial data types (e.g., PostGIS in PostgreSQL) and some NoSQL databases (e.g., MongoDB with geospatial queries).
-
-### Other Indexing Concepts
-
-- Clustered index - inline storing of row values
-- Secondary index - helps with joins
-- Covering index - few columns are included
-- Multi-column index - multiple keys concatenated
-- Full-text search and fuzzy indexes help with spelling mistakes (edit distances), grammar,
-  synonyms, words near each other, linguistics etc.

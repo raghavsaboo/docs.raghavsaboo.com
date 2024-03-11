@@ -1,4 +1,4 @@
-# System Integration
+# System Integration and Communication
 
 The process through which system components communicate and share information through compatible interfaces and messages.
 
@@ -136,44 +136,14 @@ Naive approach to serialization is to use language specific frameworks like Pyth
 
 Some common standardized encoding formats used are:
 
-=== `JSON`
-    Pros:
-    - very common and human readable
-
-    Cons:
-    - unicode strings only (no support for binary strings)
-    - issues between determining integers and floats
-    - not compact, resulting in overhead and performance issues
-    - field names need to be sent unless there is a schema involved
-
-=== Protocol Buffers / Thrift
-    Pros:
-    - uses binary encoding with a schema to reduce the size of serialized messages
-    - each field has a numbered tag, decreasing the amount of space needed for encoding
-    - schema can be used to generate classes in any language
-  
-    Cons:
-    - serialized output is not human readable
-
-=== `Avro`
-    Row based serialization of data. 
-
-    Similar to Protobuf and Thrift, but created to better suit use cases for Spark/Hadoop (dumping lots of possibly unstructured data files) and ETL.
-
-    Utilizes a schema, but doesn't have field tags.
-
-    Schema can evolve.
-
-=== `Parquet`
-    Utilizes a hybrid approach to storage - hybrid between row and column oriented storage.
-
-    Row oriented storage is bad for aggregation across a subset of columns
-
-    Column oriented storage makes it hard to reassemble a complete row due to lack of disk locality between elements of each row.
-
-    The hybrid approach partitions the row space, and within each partition uses column oriented storage.
-
-    So data is spllit in parquet files, which contain multiple "row groups" - partitions of the rows in the actual data. Also has a metadata folder that pertains the information on the row groups.
-
-    For each column in the row group, split into chunks where each chunk of a given column contains 1 MB pages which also contain some metadata about the encoded data e.g. `min, max, count of data`, a dictionary representing the elements in the data etc.
-
+| Feature                      | JSON                                     | Protocol Buffers / Thrift                          | Avro                                         | Parquet                                    |
+|------------------------------|------------------------------------------|----------------------------------------------------|----------------------------------------------|--------------------------------------------|
+| Data Representation          | Human-readable                           | Binary                                             | Binary                                       | Binary                                     |
+| Schema Support               | No                                       | Yes                                                | Yes                                          | Yes                                        |
+| Schema Evolution Support     | No                                       | Limited                                            | Yes                                          | Limited                                    |
+| Efficiency                   | Less efficient due to text format       | Highly efficient binary format                    | Efficient binary format                      | Highly efficient for analytics             |
+| Programming Language Support | Widely supported                         | Supports multiple languages                        | Supports multiple languages                   | Limited (primarily for analytics)          |
+| Tagging of Fields            | No                                       | Yes                                                | No                                           | No                                         |
+| Readability                  | Human-readable                           | Not human-readable                                | Not human-readable                           | Not human-readable                         |
+| Common Use Cases             | Interchange between systems             | Efficient data transmission between systems        | Data interchange, message serialization     | Efficient storage and querying for analytics |
+| Examples                     | Web APIs, configuration files           | Google APIs, Apache Thrift                        | Apache Kafka, Apache Avro, Hadoop ecosystem  | Apache Hadoop, Apache Spark                |

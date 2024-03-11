@@ -15,46 +15,47 @@ In distributed systems, load balancers play a crucial role in achieving scalabil
 
 In distributed systems, load balancers are typically placed at strategic points within the network to optimize traffic distribution and improve system performance. Some common placements for load balancers include:
 
-- **Frontend of the Application**:
+**Frontend of the Application**:
 
-  - Load balancers positioned at the entry point of the distributed application.
-  - Serve as the first point of contact for incoming client requests.
-  - Distribute traffic among multiple backend servers or instances before reaching application logic.
+- Load balancers positioned at the entry point of the distributed application.
+- Serve as the first point of contact for incoming client requests.
+- Distribute traffic among multiple backend servers or instances before reaching application logic.
 
-- **Between Clients and Web Servers**:
+**Between Clients and Web Servers**:
 
-  - Load balancers act as reverse proxies intercepting client requests.
-  - Positioned between clients (e.g., web browsers) and web servers hosting the application.
-  - Provide additional features such as SSL termination, caching, and request routing.
+- Load balancers act as reverse proxies intercepting client requests.
+- Positioned between clients (e.g., web browsers) and web servers hosting the application.
+- Provide additional features such as SSL termination, caching, and request routing.
 
-- **Between Web Servers and Application/Service Servers**:
+**Between Web Servers and Application Servers**:
 
-  - Load balancers distribute traffic from the web layer to the application layer.
-  - Common in traditional multi-tier architectures where web servers handle incoming requests and application servers process application logic.
-  - Ensure efficient utilization of resources and optimal performance.
+- Load balancers distribute traffic from the web layer to the application layer.
+- Common in traditional multi-tier architectures where web servers handle incoming requests and application servers process application logic.
+- Ensure efficient utilization of resources and optimal performance.
 
-- **Within Microservices Architecture**:
-  - Load balancers used to distribute traffic between different microservices or service instances.
-  - Enable dynamic routing of requests based on load, health, or specific routing rules.
-  - Align with the distributed nature of microservices-based systems.
+**Within Microservices Architecture**:
+
+- Load balancers used to distribute traffic between different microservices or service instances.
+- Enable dynamic routing of requests based on load, health, or specific routing rules.
 
 ## Load Balancer Types
 
-- **Layer 4 Load Balancer / Session Level Load Balancing**:
+**Layer 4 Load Balancer / Session Level Load Balancing**:
 
-  - Operates at the transport layer (Layer 4) of the OSI model.
-  - Directs traffic based on information available in network and transport layer protocols (e.g., IP addresses, TCP/UDP ports).
-  - Typically faster and more efficient than Layer 7 load balancers because they don't inspect application layer data.
-  - Suitable for scenarios where routing decisions can be made solely based on network and transport layer information.
-  - Examples include HAProxy and NGINX when configured as a Layer 4 load balancer.
+- Operates at the transport layer (Layer 4) of the OSI model.
+- Directs traffic based on information available in network and transport layer protocols (e.g., IP addresses, TCP/UDP ports).
+- Typically faster and more efficient than Layer 7 load balancers because they don't inspect application layer data.
+- Suitable for scenarios where routing decisions can be made solely based on network and transport layer information.
+- Examples include HAProxy and NGINX when configured as a Layer 4 load balancer.
 
-- **Layer 7 Load Balancer**:
-  - Operates at the application layer (Layer 7) of the OSI model.
-  - Makes routing decisions based on application layer data, such as HTTP headers, URLs, cookies, or content.
-  - Offers more advanced routing and traffic management capabilities, including content-based routing, session persistence, and SSL termination.
-  - Provides greater flexibility and control over traffic routing but may introduce higher latency and overhead due to application layer inspection.
-  - Ideal for scenarios that require sophisticated routing logic or application-specific traffic management.
-  - Examples include F5 BIG-IP, AWS Application Load Balancer (ALB), and NGINX when configured as a Layer 7 load balancer.
+**Layer 7 Load Balancer**:
+
+- Operates at the application layer (Layer 7) of the OSI model.
+- Makes routing decisions based on application layer data, such as HTTP headers, URLs, cookies, or content.
+- Offers more advanced routing and traffic management capabilities, including content-based routing, session persistence, and SSL termination.
+- Provides greater flexibility and control over traffic routing but may introduce higher latency and overhead due to application layer inspection.
+- Ideal for scenarios that require sophisticated routing logic or application-specific traffic management.
+- Examples include F5 BIG-IP, AWS Application Load Balancer (ALB), and NGINX when configured as a Layer 7 load balancer.
 
 ## Load Balancing Algorithms
 

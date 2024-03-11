@@ -4,22 +4,20 @@
 
 ## Horizontal Scaling
 
-### Databases
-
-#### Partitioning / Sharding
+### Partitioning / Sharding
 
 Horizontally scaling and scalability (data, users, and machines) is the key theme of partitioning.
 
 Partitioning == Splitting == Sharding
 
-##### Key Issues to Look Out For
+#### Key Issues to Look Out For
 
 - Hot spots / Skews
 - Key Hash Based Partition
 - Rebalancing strategies
 - Routing Logic Placement
 
-#### Replication
+### Replication
 
 The process of syncing data between databases in a consistent way is refered to as
 "replication".
@@ -31,10 +29,8 @@ This is needed due to a few reasons:
 - Scaling to millions of users
 - Offline/Network failures
 
-## Types of Replication
+#### Types of Replication
 
-### 1. Single Leader
-
-### 2. Multi-Leader
-
-### 3. Leaderless
+1. Single Leader
+2. Multi-Leader
+3. Leaderless

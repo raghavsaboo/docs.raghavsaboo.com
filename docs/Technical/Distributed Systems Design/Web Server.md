@@ -30,16 +30,20 @@ Web Servers can often also be used as or be called **API Gateways**, which provi
 
 An API Gateway would therefore have consolidated **Read and Write APIs**:
 
-- **Read API** - the portion of the API Gateway that allows clients to perform read requests without directly communicating with respective services through single methods. It can stitch together results of multiple async calls to different services and return them as a single result.
-  - can be used by both internal and external clients
-  - often uses a cache to re-serve data without invoking repeated calls to services
-  - can track cache hit ratios and implement its own caching logic
-- **Write API** - similar to read API but performs CUD (Create, Update and Delete) operations across services. It often triggerd on-write actions such as:
-  - fan out on write
-  - copy files to object store
-  - copy files to CDN or cache
+**Read API** - the portion of the API Gateway that allows clients to perform read requests without directly communicating with respective services through single methods. It can stitch together results of multiple async calls to different services and return them as a single result.
+
+- can be used by both internal and external clients
+- often uses a cache to re-serve data without invoking repeated calls to services
+- can track cache hit ratios and implement its own caching logic
+
+**Write API** - similar to read API but performs CUD (Create, Update and Delete) operations across services. It often trigger on-write actions such as:
+
+- fan out on write
+- copy files to object store
+- copy files to CDN or cache
 
 The advantages of an API Gateway are listed below:
+
 - **Centralized Access Point**: Provides a single entry point for all client requests, simplifying management and monitoring.
 - **Security Enforcement**: Implements security measures like authentication, authorization, and encryption to protect backend services.
 - **Traffic Management**: Offers features like rate limiting, throttling, and load balancing to ensure optimal performance and resource utilization.
