@@ -70,6 +70,15 @@ Also they may be:
 | **Examples**          | MySQL, PostgreSQL, SQL Server                          | MongoDB, Cassandra, Redis, Elasticsearch, Neo4j                |
 | **Challenges**        | Schema evolution, performance tuning                   | Data consistency, schema design, tooling ecosystem             |
 
+### Storage Engines / Data Structures
+
+Two families of storage engines used by databases:
+
+- **Log structured** - LSM-Trees e.g. SSTables -> HBASE, Cassandra -> write optimized
+- **Page-Oriented** - B-trees -> Traditional RDBMS -> read optimized
+
+These are answers to limitations of disk access.
+
 ### Relational Database Details
 
 #### Types
@@ -93,14 +102,6 @@ write patterns, user using it, data size etc.
      - Tuple writes require multiple accesses
      - Suitable for read-mostly, read-intensive, large data repositories
 
-#### Storage Engines / Data Structures
-
-Two families of storage engines used by databases:
-
-- **Log structured** - LSM-Trees e.g. SSTables -> HBASE, Cassandra
-- **Page-Oriented** - B-trees -> Traditional RDBMS
-
-These are answers to limitations of disk access.
 
 ### NoSQL Database Details
 
@@ -131,3 +132,5 @@ These are answers to limitations of disk access.
 - **Bitmap Index**: Efficient for low-cardinality columns, suitable for boolean and categorical data. Not commonly used in SQL databases, but may be utilized in some NoSQL databases.
 - **Full-Text Index**: Optimized for searching textual data, supports complex text searches and relevance ranking. Used in some SQL databases (e.g., MySQL, PostgreSQL) and NoSQL databases (e.g., Elasticsearch, MongoDB with text search).
 - **Spatial Index**: Designed for indexing geometric data, enables efficient spatial queries and joins. Used in SQL databases supporting geospatial data types (e.g., PostGIS in PostgreSQL) and some NoSQL databases (e.g., MongoDB with geospatial queries).
+
+Additionally you would also sometimes define a secondary index for more read optimization. You can have local secondary indices (usual default) or global secondary indices (for cases where the service is read heavy for a range of queries).
