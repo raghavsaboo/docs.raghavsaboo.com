@@ -124,9 +124,10 @@ These are answers to limitations of disk access.
 - **Purpose**: Indexing is a technique used in databases to optimize query performance by creating data structures that allow for fast data retrieval.
 - **Why it's Used**: Indexing improves query performance by providing efficient access paths to data, reducing the time required to search and retrieve data from tables.
 
-- **Types of Indices**:
-  - **B-Tree Index**: Widely used for range queries, ordered traversal, and equality searches in both SQL and NoSQL databases.
-  - **Hash-based Index**: Provides fast lookups for equality searches, commonly used in SQL databases.
-  - **Bitmap Index**: Efficient for low-cardinality columns, suitable for boolean and categorical data. Not commonly used in SQL databases, but may be utilized in some NoSQL databases.
-  - **Full-Text Index**: Optimized for searching textual data, supports complex text searches and relevance ranking. Used in some SQL databases (e.g., MySQL, PostgreSQL) and NoSQL databases (e.g., Elasticsearch, MongoDB with text search).
-  - **Spatial Index**: Designed for indexing geometric data, enables efficient spatial queries and joins. Used in SQL databases supporting geospatial data types (e.g., PostGIS in PostgreSQL) and some NoSQL databases (e.g., MongoDB with geospatial queries).
+**Types of Indices**:
+
+- **B-Tree Index**: Widely used for range queries, ordered traversal, and equality searches in both SQL and NoSQL databases.
+- **Hash-based Index**: Provides fast lookups for equality searches, commonly used in SQL databases.
+- **Bitmap Index**: Efficient for low-cardinality columns, suitable for boolean and categorical data. Not commonly used in SQL databases, but may be utilized in some NoSQL databases.
+- **Full-Text Index**: Optimized for searching textual data, supports complex text searches and relevance ranking. Used in some SQL databases (e.g., MySQL, PostgreSQL) and NoSQL databases (e.g., Elasticsearch, MongoDB with text search).
+- **Spatial Index**: Designed for indexing geometric data, enables efficient spatial queries and joins. Used in SQL databases supporting geospatial data types (e.g., PostGIS in PostgreSQL) and some NoSQL databases (e.g., MongoDB with geospatial queries).
