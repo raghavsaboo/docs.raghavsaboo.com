@@ -147,3 +147,41 @@ Some common standardized encoding formats used are:
 | Readability                  | Human-readable                           | Not human-readable                                | Not human-readable                           | Not human-readable                         |
 | Common Use Cases             | Interchange between systems             | Efficient data transmission between systems        | Data interchange, message serialization     | Efficient storage and querying for analytics |
 | Examples                     | Web APIs, configuration files           | Google APIs, Apache Thrift                        | Apache Kafka, Apache Avro, Hadoop ecosystem  | Apache Hadoop, Apache Spark                |
+
+## Realtime Updates
+
+When there is a need to provide real time updates from a database or server back to a client (e.g. in a chat app, ride sharing app, and notification services) there are a few options:
+
+1. Long Polling
+    - Description
+        - make a typical HTTP request to the server, and if the server does not have newdata it keeps the request open, and eventually reponds once new dta is present.
+        - once new data is recieved, the client issues another long polling request
+        - connection timeouts also results in client sending another request
+    - Pros:
+      - Easy to implement
+    - Cons:
+      - one directional, and can cause excess load by constantly recreating HTTP connections
+      - possible race condition of multiple requests
+
+2. Websockets
+
+    - Description
+      - fully bidirectional communication channel between clients and servers
+      - websockets are registered to a port which means it can have ~65k active connections
+    - Pros:
+      - bidirectional communication in realtime
+      - lower network overhead as headers are only sent once
+    - Cons:
+      - less support for older browsers / clients
+      - may be complex for infrequent data changes
+
+3. Server Sent Events
+
+    - Description
+      - one way connection from servers to clients, cliet-side code registers for events from the server
+    - Pros:
+      - persistent HTTP connection (unlike long polling)
+      - connection restablished automatically upon failure (unlike websockets)
+    - Cons:
+      - single directional communication
+      - a lot of concurrent connections can add load on server

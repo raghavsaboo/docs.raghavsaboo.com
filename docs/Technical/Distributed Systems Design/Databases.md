@@ -115,10 +115,33 @@ write patterns, user using it, data size etc.
 
 #### Types of NoSQL Databases
 
-- Document-oriented Databases: Store data in flexible, JSON-like documents, allowing for nested structures and dynamic schemas. Examples include MongoDB, Couchbase.
-- Key-Value Stores: Store data as key-value pairs, providing fast access to individual records. Examples include Redis, Amazon DynamoDB.
-- Wide-column Stores (Column-family Databases): Store data in columns rather than rows, allowing for efficient storage and retrieval of large datasets. Examples include Apache Cassandra, HBase.
-- Graph Databases: Store data in graph structures, representing relationships between entities as nodes and edges. Examples include Neo4j, Amazon Neptune.
+##### Document-oriented Databases
+Store data in flexible, JSON-like documents, allowing for nested structures and dynamic schemas.
+
+Examples include MongoDB, Couchbase, and Google Firestore.
+
+They are suitable for unstructured catalog data, and complex structured hierarchical data. For example in e-commerce applications a product can have thousands of attributes, and content management applications like blogs and video platforms.
+
+##### Key-Value Stores
+Store data as key-value pairs using methods like hash tables, providing fast access to individual records. 
+
+Examples include Redis, Amazon DynamoDB.
+
+They are efficient for session-oriented applications such as user session data/profile information, recommendations, discounts, promotions etc. 
+
+##### Wide-column Stores (Column-family Databases)
+Store data in columns rather than rows, allowing for efficient storage and retrieval of large datasets.
+
+Examples include Apache Cassandra, HBase.
+
+Effecieint for large number of aggregation and data anlytics queries. They reduce the disk I/O requirements drastically. Examples may be applications related to financial institutions that need to sum financial transaction over a period of time. 
+
+##### Graph Databases
+Store data in graph structures, representing relationships between entities as nodes and edges. Hence we are able to store the data once and interpret it differently based on the relationships. 
+
+Examples include Neo4j, Amazon Neptune.
+
+Can be used in social applications, provide interesting facts and figures among different kinds of users and activities. 
 
 ## Indexing
 
