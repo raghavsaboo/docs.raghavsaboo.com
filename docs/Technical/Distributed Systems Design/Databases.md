@@ -62,13 +62,14 @@ Also they may be:
 
 | Feature               | SQL Databases                                          | NoSQL Databases                                                |
 | --------------------- | ------------------------------------------------------ | -------------------------------------------------------------- |
-| **Data Model**        | Organized into structured tables                       | Flexible schema, supports various data models                  |
+| **Data Model**        | Organized into structured tables, relational and normalized data                       | Flexible schema, supports various data models                  |
 | **Query Language**    | SQL (Structured Query Language)                        | Custom query languages or APIs (e.g., MongoDB Query Language)  |
 | **Consistency Model** | ACID-compliant transactions                            | Basically Available, Soft state, Eventually consistent (BASE)  |
 | **Scalability**       | Generally vertical scaling, limited horizontal scaling | Horizontal scaling, distributed architectures                  |
 | **Use Cases**         | Enterprise applications, OLTP, data warehousing, OLAP  | Real-time analytics, web applications, IoT, content management |
+| **Typical Index Datastructure** | B-Trees, better for reads than writes | LSM Tree and SSTables, for fast writes |
 | **Examples**          | MySQL, PostgreSQL, SQL Server                          | MongoDB, Cassandra, Redis, Elasticsearch, Neo4j                |
-| **Challenges**        | Schema evolution, performance tuning                   | Data consistency, schema design, tooling ecosystem             |
+| **Challenges**        | Schema evolution, performance tuning, may require two phase commit                   | Data consistency, schema design, tooling ecosystem             |
 
 ### Storage Engines / Data Structures
 
@@ -116,7 +117,7 @@ write patterns, user using it, data size etc.
 #### Types of NoSQL Databases
 
 ##### Document-oriented Databases
-Store data in flexible, JSON-like documents, allowing for nested structures and dynamic schemas.
+Store data in flexible, JSON-like documents, allowing for nested structures and dynamic schemas. Nested documents allow for embedded schemas for data locality, and is denormalized.
 
 Examples include MongoDB, Couchbase, and Google Firestore.
 
@@ -130,11 +131,11 @@ Examples include Redis, Amazon DynamoDB.
 They are efficient for session-oriented applications such as user session data/profile information, recommendations, discounts, promotions etc. 
 
 ##### Wide-column Stores (Column-family Databases)
-Store data in columns rather than rows, allowing for efficient storage and retrieval of large datasets.
+Store data in columns rather than rows, allowing for efficient storage and retrieval of large datasets. The store has shard key and sort key, allows for flexible schemas and easy partitioning.
 
 Examples include Apache Cassandra, HBase.
 
-Effecieint for large number of aggregation and data anlytics queries. They reduce the disk I/O requirements drastically. Examples may be applications related to financial institutions that need to sum financial transaction over a period of time. 
+Efficient for large number of aggregation and data anlytics queries. They reduce the disk I/O requirements drastically. Examples may be applications related to financial institutions that need to sum financial transaction over a period of time. 
 
 ##### Graph Databases
 Store data in graph structures, representing relationships between entities as nodes and edges. Hence we are able to store the data once and interpret it differently based on the relationships. 

@@ -42,7 +42,7 @@ When tables in the database become too big they also affect read/write latency -
 
 2. **Hash-based** sharding
     - Details:
-        - uses hash function on an attribute, and mod to partition by number of shard
+        - uses hash function on an attribute
         - gives each partition a range of hashes
     - Pros:
         - uniform distribution of keys
@@ -68,7 +68,7 @@ When tables in the database become too big they also affect read/write latency -
             - too much load on a single partition
             - increase in query traffic
         - key strategies:
-          - avoid hash mod n
+          - avoid hash mod n (as changing number of shards will re-shuffle all data)
           - fixed number of partitions
           - dynamic partitioning
           - partition proportionally to nodes
