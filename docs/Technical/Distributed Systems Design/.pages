@@ -1,0 +1,21 @@
+nav:
+  - System Designs
+  - Great Writeups
+  - Overview
+  - Monolith vs. Microservices
+  - Webserver
+  - Proxy and Reverse Proxy
+  - Load Balancing
+  - Domain Name System
+  - Cache
+  - Content Delivery Network
+  - System Integration and Communication
+  - Databases
+  - Embedded Schemas and Denormalization
+  - CAP Theorem
+  - PACALC Theorem
+  - Consistency
+  - Vertical and Horizontal Scaling
+  - Consensus Algorithms
+  - ...
+  - References

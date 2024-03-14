@@ -2,11 +2,6 @@ site_name: Raghav Saboo's Wiki
 site_url: https://docs.raghavsaboo.com
 plugins:
   - search
-  # - mkdocs-jupyter:
-  #     include_requirejs: true
-  #     remove_tag_config:
-  #         remove_input_tags:
-  #             - hide_input
   - mknotebooks:
       enable_default_jupyter_cell_styling: false
       enable_default_pandas_dataframe_styling: false
@@ -26,7 +21,6 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
-    # - navigation.prune
     - toc.follow
     - navigation.top
     - header.autohide
