@@ -1,5 +1,5 @@
 # Pattern: Grids
-This dynamic programming pattern is used to solve problems where you have a grid structure, and you need to find an optimal solution by considering subgrids within the original grid.
+This dynamic programming pattern is used to solve problems where you have a grid structure, and you need to find an optimal solution by considering subgrids within the original grid. The cached table will have the same dimensions as the grid.
 
 ## Memoization (Top-Down) Approach
 Define the state:

@@ -154,10 +154,3 @@ https://leetcode.com/problems/last-stone-weight/
 
 ### Profitable Schemes
 https://leetcode.com/problems/profitable-schemes/
-
-
-## 1D Dynamic Programming
-
-## 2D Dynamic Programming
-
-## 3D Dynamic Programming
