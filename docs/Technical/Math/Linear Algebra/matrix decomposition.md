@@ -1,4 +1,4 @@
-# Eigenvalue Decomposition (EVD)
+# Matrix Decomposition Methods
 
 ## Basics
 
