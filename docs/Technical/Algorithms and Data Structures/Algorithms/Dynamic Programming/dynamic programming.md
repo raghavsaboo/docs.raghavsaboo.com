@@ -77,8 +77,6 @@ https://leetcode.com/problems/distinct-subsequences/description/
 ### Shortest Common Supersequence
 https://leetcode.com/problems/shortest-common-supersequence/description/
 
-### Minimum Insertions / Deletions
-
 ## Interval
 The DP sub problem is solved on every single interval (subarray) of the array.
 
@@ -99,8 +97,6 @@ https://leetcode.com/problems/burst-balloons/description/
 
 ### Strange Printer
 https://leetcode.com/problems/strange-printer/description/
-
-### Palindromic Partitioning
 
 ## Linear Sequences with Non-Constant Transition
 DP problem is solved on every prefix of the array just like group 2. However, transitions may not be simple and require a linear amount of options from indices j < i.

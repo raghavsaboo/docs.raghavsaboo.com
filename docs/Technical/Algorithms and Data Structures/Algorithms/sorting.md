@@ -386,3 +386,34 @@ arr = [1, 8, 3, 9, 10, 10, 2, 4 ]
 cycle_sort(arr)
 print("Sorted array is:", arr)
 ```
+## External Memory Sorting:
+
+External memory sorting is a technique used when the size of the input data exceeds the available memory capacity. In such scenarios, traditional in-memory sorting algorithms become impractical, requiring the use of disk-based sorting techniques to process large datasets efficiently.
+
+### Challenges of Large Datasets:
+
+1. **Limited Memory**: The primary challenge is the limited amount of available memory, which prevents loading the entire dataset into RAM for sorting.
+
+2. **Disk I/O Overhead**: Disk I/O operations are significantly slower than memory operations, leading to performance bottlenecks when reading and writing data from/to disk.
+
+### Multiway Merge-Sort:
+
+Multiway merge-sort is a disk-based sorting algorithm that efficiently sorts large datasets by dividing the input into smaller chunks that can fit into memory, sorting them in-memory, and then merging the sorted chunks to produce the final sorted output.
+
+### Algorithm Overview:
+
+1. **Initial Partitioning**: Divide the input dataset into multiple smaller chunks or blocks that can fit into memory.
+
+2. **In-Memory Sorting**: Load each block into memory and perform an in-memory sorting algorithm (e.g., quicksort or heapsort) to sort the data within each block.
+
+3. **Multiway Merge**: Merge the sorted blocks using a multiway merge algorithm, such as k-way merge, which merges k sorted sequences efficiently.
+
+4. **Output Generation**: As the merge proceeds, write the sorted output to disk.
+
+5. **Final Merge**: If the number of blocks exceeds the memory capacity, perform another merge pass until all blocks are merged into a single sorted output.
+
+### Complexity:
+
+- **Time Complexity**: The time complexity of multiway merge-sort depends on the number of passes required for merging and the efficiency of the in-memory sorting algorithm. Typically, it is dominated by the disk I/O operations and the number of merge passes needed. The total number of disk transfers $T_{\text{disk}}$ is often used as a measure of performance. For $N$ elements and $M$ available memory blocks, the total number of disk transfers can be approximated as $T_{\text{disk}} \approx 2N \log_M N$.
+
+- **Space Complexity**: The space complexity is determined by the number of blocks that can be loaded into memory at once and the size of each block. It is often proportional to the memory capacity available.
